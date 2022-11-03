@@ -28,4 +28,36 @@ const createNewWishlist = (req, res) => {
     });
 };
 
-module.exports = { createNewWishlist };
+const getWishlistById = (req, res) => {
+  const id = req.token.userId;
+
+  const query =
+    "SELECT * FROM wishlists INNER JOIN products ON wishlists.product_id = products.id WHERE wishlists.user_id = $1";
+
+  const data = [id];
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      if (result.rows.length == 0) {
+        return res.status(404).json({
+          success: false,
+          message: "The wishlist is not found",
+        });
+      }
+      res.status(201).json({
+        success: true,
+        message: `The Wishlist with user id ${id}`,
+        result: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { createNewWishlist, getWishlistById };
