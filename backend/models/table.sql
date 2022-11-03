@@ -64,7 +64,8 @@ CREATE TABLE products (
     price INT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES categories(id),
     PRIMARY KEY (id),
-    is_deleted SMALLINT DEFAULT 0
+    is_deleted SMALLINT DEFAULT 0,
+    in_stock SMALLINT DEFAULT 0
 );
 
 CREATE TABLE matches (
@@ -74,41 +75,16 @@ CREATE TABLE matches (
     place VARCHAR(255),
     dates VARCHAR(255),
     time duration VARCHAR(255),
-    ticketPrice INT INT NOT NULL,
-    team1postion1 SMALLINT DEFAULT 0
-    team1postion2 SMALLINT DEFAULT 0
-    team1postion3 SMALLINT DEFAULT 0
-    team1postion4 SMALLINT DEFAULT 0
-    team1postion5 SMALLINT DEFAULT 0
-    team2postion1 SMALLINT DEFAULT 0
-    team2postion2 SMALLINT DEFAULT 0
-    team2postion3 SMALLINT DEFAULT 0
-    team2postion4 SMALLINT DEFAULT 0
-    team2postion5 SMALLINT DEFAULT 0
-    PRIMARY KEY (id),
+    ticketPrice INT NOT NULL,
+    team1postion1 SMALLINT DEFAULT 0,
+    team1postion2 SMALLINT DEFAULT 0,
+    team1postion3 SMALLINT DEFAULT 0,
+    team1postion4 SMALLINT DEFAULT 0,
+    team1postion5 SMALLINT DEFAULT 0,
+    team2postion1 SMALLINT DEFAULT 0,
+    team2postion2 SMALLINT DEFAULT 0,
+    team2postion3 SMALLINT DEFAULT 0,
+    team2postion4 SMALLINT DEFAULT 0,
+    team2postion5 SMALLINT DEFAULT 0,
+    PRIMARY KEY (id)
 )
-
-
-INSERT INTO
-  roles (role)
-VALUES
-  ('ADMIN');
-INSERT INTO
-  roles (role)
-VALUES
-  ('USER');
-
-INSERT INTO
-  permissions (permission)
-VALUES
-  ('CREATE_PRODUCT');
-
-INSERT INTO
-  role_permission (role_id, permission_id)
-VALUES
-  (1, 1);
-
-INSERT INTO
-  role_permission (role_id, permission_id)
-VALUES
-  (1, 2);
