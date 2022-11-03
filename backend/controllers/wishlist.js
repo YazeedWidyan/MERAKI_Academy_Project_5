@@ -39,7 +39,7 @@ const getWishlistById = (req, res) => {
   pool
     .query(query, data)
     .then((result) => {
-      if (result.rows.length == 0) {
+      if (result.rowCount == 0) {
         return res.status(404).json({
           success: false,
           message: "The wishlist is not found",
@@ -48,7 +48,7 @@ const getWishlistById = (req, res) => {
       res.status(201).json({
         success: true,
         message: `The Wishlist with user id ${id}`,
-        result: result,
+        result: result.rows,
       });
     })
     .catch((err) => {
@@ -60,4 +60,32 @@ const getWishlistById = (req, res) => {
     });
 };
 
-module.exports = { createNewWishlist, getWishlistById };
+const deleteProductFromWishlistById = (req, res) => {
+  const id = req.params.id;
+
+  const query = "DELETE FROM wishlists WHERE id = $1";
+
+  const data = [id];
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "the product is deleted from wishlist",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = {
+  createNewWishlist,
+  getWishlistById,
+  deleteProductFromWishlistById,
+};
