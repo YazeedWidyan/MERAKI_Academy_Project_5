@@ -27,26 +27,26 @@ CREATE TABLE users(
   password VARCHAR(255),
   role_id INT,
   is_deleted SMALLINT DEFAULT 0,
-  FOREIGN KEY (role_id) REFERENCES roles(id),
+  FOREIGN KEY (role_id) REFERENCES roles(role_id),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE carts (
     id SERIAL NOT NULL,
-    product_id INT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
-    PRIMARY KEY (id),
+    product_id INT,
+    user_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE wishlists (
     id SERIAL NOT NULL,
-    product_id INT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (product_id) REFERENCES products (id),
-    FOREIGN KEY (user_id) REFERENCES users (id)
-    PRIMARY KEY (id),
+    product_id INT,
+    user_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE categories (
@@ -74,7 +74,7 @@ CREATE TABLE matches (
     descriptions VARCHAR(255),
     place VARCHAR(255),
     dates VARCHAR(255),
-    time duration VARCHAR(255),
+    timeduration VARCHAR(255),
     ticketPrice INT NOT NULL,
     team1postion1 SMALLINT DEFAULT 0,
     team1postion2 SMALLINT DEFAULT 0,
@@ -88,3 +88,33 @@ CREATE TABLE matches (
     team2postion5 SMALLINT DEFAULT 0,
     PRIMARY KEY (id)
 )
+
+
+INSERT INTO
+  roles (role)
+VALUES
+  ('ADMIN');
+INSERT INTO
+  roles (role)
+VALUES
+  ('USER');
+
+INSERT INTO
+  permissions (permission)
+VALUES
+  ('CREATE_PRODUCTS');
+
+INSERT INTO
+  permissions (permission)
+VALUES
+  ('CREATE_MATCHES');
+
+INSERT INTO
+  role_permission (role_id, permission_id)
+VALUES
+  (1, 1);
+
+INSERT INTO
+  role_permission (role_id, permission_id)
+VALUES
+  (1, 2);
