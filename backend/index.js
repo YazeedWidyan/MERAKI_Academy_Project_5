@@ -5,6 +5,7 @@ require("./models/db");
 console.log("test");
 //routers
 const wishlistRouter = require("./routes/wishlist");
+const paymentRouter = require("./routes/payment");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 // router middleware
 app.use("/wishlist", wishlistRouter);
+app.use("/payment", paymentRouter);
 
 const PORT = process.env.PORT || 5000;
 
