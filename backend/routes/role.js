@@ -10,5 +10,7 @@ roleRouter.get("/");
 roleRouter.put("/");
 roleRouter.delete("/");
 
+console.log('role');
+
 module.exports = roleRouter;
 //a
