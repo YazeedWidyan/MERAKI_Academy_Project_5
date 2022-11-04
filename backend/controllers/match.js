@@ -76,4 +76,31 @@ const updateAMatchById = (req, res) => {
     });
 };
 
-module.exports = { createAMatch, getAllMatches, updateAMatchById };
+const deleteAMatchById = (req, res) => {
+  const id = req.params.id;
+  const data = [id];
+  const query = "DELETE FROM matches WHERE id = $1 ";
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "the match is deleted",
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = {
+  createAMatch,
+  getAllMatches,
+  updateAMatchById,
+  deleteAMatchById,
+};
