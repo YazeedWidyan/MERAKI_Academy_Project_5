@@ -27,4 +27,25 @@ const createAMatch = (req, res) => {
     });
 };
 
-module.exports = { createAMatch };
+const getAllMatches = (req, res) => {
+  const query = "SELECT * FROM matches";
+
+  pool
+    .query(query)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "All the Matches",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { createAMatch, getAllMatches };
