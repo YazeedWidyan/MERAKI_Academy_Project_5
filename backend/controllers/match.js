@@ -48,4 +48,30 @@ const getAllMatches = (req, res) => {
     });
 };
 
-module.exports = { createAMatch, getAllMatches };
+const updateAMatchById = (req, res) => {
+  const id = req.params.id;
+  const { teamNumber, postionNumber } = req.body;
+
+  const data = [id, teamNumber, postionNumber];
+
+  const query = "UPDATE matches SET team$2postion$3 = 1 WHERE id = $1";
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "updated the match",
+        result: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
+module.exports = { createAMatch, getAllMatches, updateAMatchById };
