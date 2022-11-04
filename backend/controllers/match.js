@@ -51,10 +51,12 @@ const getAllMatches = (req, res) => {
 const updateAMatchById = (req, res) => {
   const id = req.params.id;
   const { teamNumber, postionNumber } = req.body;
+  console.log(teamNumber);
+  console.log(postionNumber);
 
-  const data = [id, teamNumber, postionNumber];
+  const data = [id];
 
-  const query = "UPDATE matches SET team$2postion$3 = 1 WHERE id = $1";
+  const query = `UPDATE matches SET team${teamNumber}postion${postionNumber} = 1 WHERE id = $1`;
 
   pool
     .query(query, data)
