@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { setUserType } from "../../redux/reducers/auth";
 
 const Admin = () => {
+  //this componet is container of admin panel bussines add product edit and delete and have header of admin panel
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(0);
