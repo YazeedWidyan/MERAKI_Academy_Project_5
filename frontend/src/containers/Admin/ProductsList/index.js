@@ -12,6 +12,8 @@ import { gettAllProducts } from "../../../redux/selectors/products.selectors";
 import { getToken } from "../../../redux/selectors/auth.selectors";
 
 const ProductsList = () => {
+  //this componet for get all products and show it with 2 buttom edit and delete in sidebar products list section
+
   const [show, setShow] = useState(false);
   const [message, setMessage] = useState("");
   const [productDetails, setProductDetails] = useState({});
@@ -23,13 +25,14 @@ const ProductsList = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/products`, {
+      const res = await axios.get(`http://localhost:5000/product`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       if (res.data.success) {
-        dispatch(setProducts(res.data.result));
+        console.log(res.data.result);
+        // dispatch(setProducts(res.data.result));
         setMessage("");
         setShow(true);
       } else throw Error;
@@ -48,14 +51,14 @@ const ProductsList = () => {
 
   const deleteProduct = (id) => {
     axios
-      .delete(`http://localhost:5000/products/${id}`, {
+      .delete(`http://localhost:5000/product/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        dispatch(deleteFromProducts(id));
-        console.log(res);
+        console.log(res.data.result);
+        // dispatch(deleteFromProducts(id));
       })
       .catch((err) => {
         console.log(err);

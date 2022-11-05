@@ -3,6 +3,8 @@ import "./EditProductDialog.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getToken } from "../../redux/selectors/auth.selectors";
+
+//this is componet for edit popup product
 const EditProductDialog = ({
   productDetails,
   setIsEdit,
@@ -19,7 +21,7 @@ const EditProductDialog = ({
   const handleSubmit = (e) => {
     axios
       .put(
-        `http://localhost:5000/products/${productDetails.id}`,
+        `http://localhost:5000/product/${productDetails.id}`,
         {
           title,
           price,

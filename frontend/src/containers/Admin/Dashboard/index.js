@@ -5,17 +5,11 @@ import { getToken } from "../../../redux/selectors/auth.selectors";
 import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  //this componet fror get website status and show it in dashboard like total of users
   const [usersTotal, setUsersTotal] = useState(0);
-  const [gamesTotal, setGamesTotal] = useState(0);
+  const [productsTotal, setProductsTotal] = useState(0);
   const [ordersTotal, setOrdersTotal] = useState(0);
-  const [orderTotalAmount, setOrderTotalAmount] = useState([]);
   const token = useSelector(getToken);
-
-  const grandTotal = (arr) => {
-    return arr.reduce((sum, i) => {
-      return sum + i.total;
-    }, 0);
-  };
 
   useEffect(() => {
     axios
@@ -25,20 +19,20 @@ const Dashboard = () => {
         },
       })
       .then((res) => {
-        setUsersTotal(res.data.usersTotal);
+        setUsersTotal(res.data.result[0].count);
       })
       .catch((err) => {
         console.log(err);
       });
 
     axios
-      .get("http://localhost:5000/webstatus/games", {
+      .get("http://localhost:5000/webstatus/products", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
-        setGamesTotal(res.data.gamesTotal);
+        setProductsTotal(res.data.result[0].count);
       })
       .catch((err) => {
         console.log(err);
@@ -51,8 +45,7 @@ const Dashboard = () => {
         },
       })
       .then((res) => {
-        setOrdersTotal(res.data.ordersTotal);
-        setOrderTotalAmount(res.data.orders);
+        setOrdersTotal(res.data.result[0].count);
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +69,7 @@ const Dashboard = () => {
         <div className="dashboard-card">
           <div>
             <div className="total-text">Products Total</div>
-            <div className="total-number">{gamesTotal}</div>
+            <div className="total-number">{productsTotal}</div>
           </div>
           <img
             className="dashboard-card-image"
@@ -92,19 +85,6 @@ const Dashboard = () => {
           <img
             className="dashboard-card-image"
             src="../assets/images/growth.png"
-            alt=""
-          />
-        </div>
-        <div className="dashboard-card">
-          <div>
-            <div className="total-text">Total Sales profit</div>
-            <div className="total-number">
-              ${Math.ceil(grandTotal(orderTotalAmount))}
-            </div>
-          </div>
-          <img
-            className="dashboard-card-image"
-            src="../assets/images/money-tree.png"
             alt=""
           />
         </div>
