@@ -5,11 +5,12 @@ const {
   getWishlistById,
   deleteProductFromWishlistById,
 } = require("../controllers/wishlist");
+const authentication = require("../middlewares/authentication");
 
 const wishlistRouter = express.Router();
 
-wishlistRouter.post("/", createNewWishlist);
-wishlistRouter.get("/", getWishlistById);
+wishlistRouter.post("/", authentication, createNewWishlist);
+wishlistRouter.get("/", authentication, getWishlistById);
 wishlistRouter.delete("/:id", deleteProductFromWishlistById);
 
 module.exports = wishlistRouter;

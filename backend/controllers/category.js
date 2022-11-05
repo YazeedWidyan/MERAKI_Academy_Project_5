@@ -1,14 +1,13 @@
-const {pool}= require("../models/db");
-const getAllCatagories=(req,res)=>{
-    const query=`SELECT * FROM categories  WHERE is_deleted=0 ORDER BY 1;`;
-pool
+const { pool } = require("../models/db");
+const getAllCatagories = (req, res) => {
+  const query = `SELECT * FROM categories  WHERE is_deleted=0 ORDER BY 1;`;
+  pool
     .query(query)
     .then((result) => {
       res.status(200).json({
         success: true,
         massage: "All the categories",
         result: result.rows,
-       
       });
     })
     .catch((err) => {
@@ -18,13 +17,14 @@ pool
         err: err,
       });
     });
-}
+};
 
-const addCatagory=(req,res)=>{
-    const category=req.body.category
-    const values=[category]
-    const query=`INSERT INTO categories (category) VALUES $1  RETURNING *;`;
-    pool
+const addCatagory = (req, res) => {
+  const category = req.body.category;
+  console.log(category);
+  const values = [category];
+  const query = `INSERT INTO categories (category) VALUES ($1)  RETURNING *;`;
+  pool
     .query(query, values)
     .then((result) => {
       res.status(200).json({
@@ -34,18 +34,19 @@ const addCatagory=(req,res)=>{
       });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         massage: "Server error",
         err: err,
       });
     });
-}
-const deleteCatagory=(req,res)=>{
-    const id = req.params.id;
-    const query = `UPDATE categories SET is_deleted=1 WHERE id=$1;`;
-    const values = [id];
-    pool
+};
+const deleteCatagory = (req, res) => {
+  const id = req.params.id;
+  const query = `UPDATE categories SET is_deleted=1 WHERE id=$1;`;
+  const values = [id];
+  pool
     .query(query, values)
     .then((result) => {
       if (result.rowCount === 0) {
@@ -68,14 +69,14 @@ const deleteCatagory=(req,res)=>{
         err: err,
       });
     });
-}
-const updateCatagory=(req,res)=>{
-    const id = req.params.id;
-    const category=req.body.category
-    const values=[category||null,id]
-    const query=`UPDATE products SET category = COALESCE($1,category) WHERE id=$2 AND is_deleted = 0  RETURNING *;`;
- 
-    pool
+};
+const updateCatagory = (req, res) => {
+  const id = req.params.id;
+  const category = req.body.category;
+  const values = [category || null, id];
+  const query = `UPDATE products SET category = COALESCE($1,category) WHERE id=$2 AND is_deleted = 0  RETURNING *;`;
+
+  pool
     .query(query, values)
     .then((result) => {
       if (result.rows.length === 0) {
@@ -98,6 +99,11 @@ const updateCatagory=(req,res)=>{
         err: err,
       });
     });
-}
+};
 
-module.exports={getAllCatagories,addCatagory,deleteCatagory,updateCatagory}
+module.exports = {
+  getAllCatagories,
+  addCatagory,
+  deleteCatagory,
+  updateCatagory,
+};
