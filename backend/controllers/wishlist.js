@@ -4,11 +4,11 @@ const { pool } = require("../models/db");
 
 const createNewWishlist = (req, res) => {
   const { product_id } = req.body;
-  const user_id = req.token.userId;
+  const userId = req.token.userId;
 
   const query = "INSERT INTO wishlists(product_id, user_id) VALUES ($1,$2)";
 
-  const data = [product_id, user_id];
+  const data = [product_id, userId];
 
   pool
     .query(query, data)
