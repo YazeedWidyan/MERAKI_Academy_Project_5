@@ -44,26 +44,27 @@ const createNewPermission = (req, res) => {
       });
     });
 };
-  const createNewRolePermission = (req, res) => {
-    const { role_id, permission_id } = req.body;
-    const data = [role_id, permission_id];
-    const query =
-      "INSERT INTO role_permission(role_id, permission_id)VALUES($1, $2) RETURNING *;";
-    pool.query(query, data).then((result) => {
-      res.status(201).json({
+const createNewRolePermission = (req, res) => {
+  const { role_id, permission_id } = req.body;
+  const data = [role_id, permission_id];
+  const query =
+    "INSERT INTO role_permission(role_id, permission_id)VALUES($1, $2) RETURNING *;";
+  pool.query(query, data).then((result) => {
+    res
+      .status(201)
+      .json({
         success: true,
         message: "Success role_permission created",
         result: result.rows,
       })
-      .catch((err)=>{
+      .catch((err) => {
         res.status(500).json({
-            success:false,
-            message: 'Server error',
-            err
-        })
-      })
-    });
- 
+          success: false,
+          message: "Server error",
+          err,
+        });
+      });
+  });
 };
 
 module.exports = {
