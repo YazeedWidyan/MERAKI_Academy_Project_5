@@ -41,9 +41,9 @@ const searchProduct = (req, res) => {
     });
 };
 const addProduct = (req, res) => {
-  const { title, descriptions, catagory_id, img, price } = req.body;
-  const values = [title, descriptions, catagory_id, img, price];
-  const query = `INSERT INTO products (title,descriptions,catagory_id,img,price) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
+  const { title, descriptions, category_id, img, price } = req.body;
+  const values = [title, descriptions, category_id, img, price];
+  const query = `INSERT INTO products (title,descriptions,category_id,img,price) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
   pool
     .query(query, values)
     .then((result) => {
@@ -91,12 +91,12 @@ const deleteProduct = (req, res) => {
 };
 const updateProducts = (req, res) => {
   const id = req.params.id;
-  const { title, descriptions, catagory_id, img, price } = req.body;
+  const { title, descriptions, category_id, img, price } = req.body;
   const query = `UPDATE products SET title = COALESCE($1,title), description = COALESCE($2, description),catagory_id=COALESCE($3, catagory_id),img=COALESCE($4, img),price=COALESCE($5, price) WHERE id=$6 AND is_deleted = 0  RETURNING *;`;
   const values = [
     title || null,
     descriptions || null,
-    catagory_id || null,
+    category_id || null,
     img || null,
     price || null,
     id,
