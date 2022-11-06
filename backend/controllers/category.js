@@ -21,9 +21,11 @@ pool
 }
 
 const addCatagory=(req,res)=>{
+
     const category=req.body.category
     const values=[category]
-    const query=`INSERT INTO categories (category) VALUES $1  RETURNING *;`;
+    console.log(category);
+    const query=`INSERT INTO categories (category) VALUES ($1)  RETURNING *;`;
     pool
     .query(query, values)
     .then((result) => {
