@@ -67,6 +67,18 @@ CREATE TABLE products (
     is_deleted SMALLINT DEFAULT 0,
     in_stock SMALLINT DEFAULT 0
 );
+CREATE TABLE orders (
+    id SERIAL NOT NULL,
+    user_id INT,
+    order_date DATE,
+    ship_date DATE,
+    street VARCHAR(30),
+    city VARCHAR(20),
+    country VARCHAR(20),
+    is_deleted SMALLINT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    PRIMARY KEY (id)
+);
 
 CREATE TABLE matches (
     id SERIAL NOT NULL,
@@ -87,7 +99,7 @@ CREATE TABLE matches (
     team2postion4 SMALLINT DEFAULT 0,
     team2postion5 SMALLINT DEFAULT 0,
     PRIMARY KEY (id)
-)
+);
 
 
 INSERT INTO
