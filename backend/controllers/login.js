@@ -1,7 +1,7 @@
 const {pool} =require("../models/db")
 const bcrypt =require("bcrypt")
 const jwt =require("jsonwebtoken")
-
+console.log("edit role");
 const login =(req,res)=>{
  const password =req.body.password;
  const email=req.body.email;
@@ -23,7 +23,9 @@ const login =(req,res)=>{
          const secret = process.env.SECRET;
          const token = jwt.sign(payload, secret, options);
          if (token) {
-           return res.status(200).json({ token, userId: result.rows[0].id });
+           return res.status(200).json({ token, userId: result.rows[0].id,
+            role: result.rows[0].role_id
+           });
          } else {
            throw Error;
          }
