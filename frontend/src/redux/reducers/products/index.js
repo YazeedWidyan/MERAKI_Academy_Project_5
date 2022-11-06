@@ -4,6 +4,9 @@ export const productsSlice = createSlice({
   name: "products",
   initialState: {
     products: [],
+    menProducts: [],
+    womenProducts: [],
+    kidsProducts:[],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -14,9 +17,19 @@ export const productsSlice = createSlice({
         return product.id !== action.payload;
       });
     },
+    setMenProducts: (state, action) => {
+      state.menProducts = action.payload;
+    },
+    setWomenProducts: (state, action) => {
+      state.womenProducts = action.payload;
+    },
+    setKidsProducts: (state, action) =>{
+      state.kidsProducts = action.payload
+    }
   },
 });
 
-export const { setProducts, deleteFromProducts } = productsSlice.actions;
+export const { setProducts, deleteFromProducts, setMenProducts, setWomenProducts, setKidsProducts } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

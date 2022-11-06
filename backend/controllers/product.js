@@ -127,7 +127,8 @@ const updateProducts = (req, res) => {
 };
 const getProductByCatagory = (req, res) => {
   const category_id = req.params.category_id;
-  const query = `SELECT * FROM products RIGHT  JOIN categories  WHERE is_deleted=0 AND category_id=${category_id};`;
+  // console.log(category_id);
+  const query = `SELECT * FROM products INNER JOIN categories ON products.category_id = categories.id WHERE is_deleted=0 AND category_id=${category_id};`;
   pool
     .query(query)
     .then((result) => {

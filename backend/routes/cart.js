@@ -1,4 +1,5 @@
 const express = require("express");
+const authentication = require("../middlewares/authentication");
 const {
   addToCart,
   getAllCartItems,
@@ -6,10 +7,11 @@ const {
 } = require("../controllers/cart");
 const cartRouter = express.Router();
 
-cartRouter.post("/", addToCart);
-cartRouter.get("/", getAllCartItems);
+cartRouter.post("/", authentication, addToCart);
+cartRouter.get("/", authentication, getAllCartItems);
 cartRouter.delete("/:id", deleteProductFromCart);
-console.log('role');
+console.log("role");
 
 module.exports = cartRouter;
+console.log('test');
 //a
