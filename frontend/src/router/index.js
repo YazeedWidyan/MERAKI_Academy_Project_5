@@ -27,7 +27,7 @@ const Router = () => {
 
   return (
     <>
-      {userType === "user" && <Header />}
+      {userType === 1 && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="admin" element={<Admin />}>
@@ -50,7 +50,7 @@ const Router = () => {
         )}
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
-      {userType === "user" && <Footer />}
+      {userType === 1 && <Footer />}
     </>
   );
 };
