@@ -1,6 +1,7 @@
 import "./register.style.css";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
+import {getIsLoggedIn} from "../../redux/selectors/auth.selectors"
 import React, { useState } from "react";
 const Register = () => {
   const [firstName, setFirstName] = useState("");
@@ -10,6 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const role_id = 1;
+  const state =useSelector(getIsLoggedIn)
   const addNewUser = () => {
     axios
       .post("http://localhost:5000/user", {
@@ -31,7 +33,9 @@ const Register = () => {
 
   return (
     <>
+
       <div className="container2">
+        {!state.getIsLoggedIn?(<>
         <p>Register</p>
         <input
           onChange={(e) => {
@@ -83,6 +87,9 @@ const Register = () => {
         >
           Submit
         </button>
+        </>):(<>
+          <p>Logout First</p>
+        </>)}
       </div>
     </>
   );
