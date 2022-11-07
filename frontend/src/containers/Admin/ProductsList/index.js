@@ -32,7 +32,8 @@ const ProductsList = () => {
       });
       if (res.data.success) {
         console.log(res.data.result);
-        // dispatch(setProducts(res.data.result));
+
+        dispatch(setProducts(res.data.result));
         setMessage("");
         setShow(true);
       } else throw Error;
@@ -50,15 +51,12 @@ const ProductsList = () => {
   };
 
   const deleteProduct = (id) => {
+    console.log(id);
     axios
-      .delete(`http://localhost:5000/product/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(`http://localhost:5000/product/delete/${id}`)
       .then((res) => {
         console.log(res.data.result);
-        // dispatch(deleteFromProducts(id));
+        dispatch(deleteFromProducts(id));
       })
       .catch((err) => {
         console.log(err);
