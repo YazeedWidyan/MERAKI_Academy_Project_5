@@ -48,7 +48,7 @@ const Search = () => {
                 <div
                   onClick={() => goToDetails(product.id)}
                   key={product.id}
-                  className="card"
+                  className="search-bar-card"
                 >
                   <img
                     className="search-card-image"
