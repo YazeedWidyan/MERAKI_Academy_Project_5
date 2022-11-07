@@ -68,36 +68,36 @@ const Home = () => {
   return (
     <div>
       Home
-      <div>
+      <div className="categroy-container">
         {menProducts.map((product, i) => {
           console.log(menProducts);
           return (
-            <div key={i} onClick={() => goToDetails(product.id)}>
-              <h3>{product.category}</h3>
+            <div key={i}>
+              <h3>Men</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="categroy-container">
         {womenProducts.map((product, i) => {
           return (
-            <div key={i} onClick={() => goToDetails(product.id)}>
-              <h3>{product.category_id}</h3>
+            <div key={i}>
+              <h3>Women</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="categroy-container">
         {kidsProducts.map((product, i) => {
           return (
-            <div key={i} onClick={() => goToDetails(product.id)}>
-              <h3>{product.category_id}</h3>
+            <div key={i}>
+              <h3>Kids</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
