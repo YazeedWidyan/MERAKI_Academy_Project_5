@@ -1,0 +1,11 @@
+.contact-container{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(179, 222, 227);
+    padding: 2%;
+}
+.contact-us{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
