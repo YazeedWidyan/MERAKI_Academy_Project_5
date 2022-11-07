@@ -19,6 +19,7 @@ const Login = () => {
       })
       .then((result) => {
         console.log(result);
+        console.log(result);
         dispatch(setLogin(result.data.token));
         dispatch(setUserId(result.data.userId));
         dispatch(setUserType(result.data.role));

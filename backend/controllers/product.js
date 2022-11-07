@@ -1,10 +1,12 @@
 const { pool } = require("../models/db");
 
 const getAllProducts = (req, res) => {
-  const query = `SELECT * FROM products RIGHT  JOIN categories  WHERE is_deleted=0 ORDER BY 1;`;
+  console.log("yaa");
+  const query = `SELECT products.id, img, category, title, category_id, descriptions, price, in_stock FROM products FULL OUTER JOIN categories ON products.category_id = categories.id WHERE is_deleted=0 ORDER BY 1;`;
   pool
     .query(query)
     .then((result) => {
+      console.log(result.rows);
       res.status(200).json({
         success: true,
         massage: "All the products",
@@ -128,10 +130,11 @@ const updateProducts = (req, res) => {
 const getProductByCatagory = (req, res) => {
   const category_id = req.params.category_id;
   // console.log(category_id);
-  const query = `SELECT * FROM products INNER JOIN categories ON products.category_id = categories.id WHERE is_deleted=0 AND category_id=${category_id};`;
+  const query = `SELECT products.id, img, category, title, category_id, descriptions, price, in_stock FROM products FULL OUTER JOIN categories ON products.category_id = categories.id WHERE is_deleted=0 AND category_id=${category_id};`;
   pool
     .query(query)
     .then((result) => {
+      console.log(result.rows);
       res.status(200).json({
         success: true,
         massage: "All the products by their catagories",
@@ -147,6 +150,35 @@ const getProductByCatagory = (req, res) => {
     });
 };
 
+const getProductById = (req, res) => {
+  const id = req.params.id;
+  const data = [id];
+  const query = "SELECT * FROM products WHERE id = $1";
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: "The product is not found",
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The product with id ${id}`,
+        product: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        Error: err.message,
+      });
+    });
+};
+
 module.exports = {
   getAllProducts,
   addProduct,
@@ -154,4 +186,5 @@ module.exports = {
   updateProducts,
   searchProduct,
   getProductByCatagory,
+  getProductById,
 };
