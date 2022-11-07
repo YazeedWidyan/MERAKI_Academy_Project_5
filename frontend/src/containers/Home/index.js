@@ -61,35 +61,35 @@ dispatch(setKidsProducts(data.data.result))
   return (
     <div>
       Home
-      <div>
+      <div className="categroy-container">
         {menProducts.map((product, i) => {
           return (
             <div key={i}>
-              <h3>{product.category_id}</h3>
+              <h3>Men</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="categroy-container">
         {womenProducts.map((product, i) => {
           return (
             <div key={i}>
-              <h3>{product.category_id}</h3>
+              <h3>Women</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="categroy-container">
         {kidsProducts.map((product, i) => {
           return (
             <div key={i}>
-              <h3>{product.category_id}</h3>
+              <h3>Kids</h3>
               <h4>{product.title}</h4>
-              <h5>{product.img}</h5>
+              <h5>image {product.img}</h5>
             </div>
           );
         })}
