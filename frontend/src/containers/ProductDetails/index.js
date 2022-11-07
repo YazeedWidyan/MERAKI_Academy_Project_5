@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
+  addToWishlist,
+  deleteFromWishlist,
+} from "../../redux/reducers/wishlist";
+import {
   FaShoppingCart,
   FaHeart,
   FaMinus,
@@ -9,7 +13,7 @@ import {
 } from "react-icons/fa";
 import "./productDetails.style.css";
 import { getToken, getUserId } from "../../redux/selectors/auth.selectors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getWishlist } from "../../redux/selectors/wishlist.selectors";
 import axios from "axios";
 
@@ -18,7 +22,9 @@ const ProductDetails = () => {
   const loading = false;
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [product, setProduct] = useState({});
+
   const [inWishlist, setInWishlist] = useState(false);
   const token = useSelector(getToken);
 
@@ -57,7 +63,7 @@ const ProductDetails = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        dispatch(addToWishlist(product));
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +77,7 @@ const ProductDetails = () => {
     if (quantity === 1) return;
     setQuantity((prev) => prev - 1);
   };
-
+  console.log("yazeed");
   const deleteFromWishList = (id) => {
     console.log(id);
     axios
@@ -82,6 +88,7 @@ const ProductDetails = () => {
       })
       .then((res) => {
         console.log(res);
+        dispatch(deleteFromWishlist(id));
       })
       .catch((err) => {
         console.log(err);
