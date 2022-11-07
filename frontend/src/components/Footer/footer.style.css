@@ -1,0 +1,27 @@
+.footer-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.upper-footer{
+    display:grid;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: space-evenly;
+}
+.f-logo{
+
+}
+.f-contact-us{
+
+}
+.f-follow-us{
+    display: flex;
+    flex-direction: column;
+}
+.social-networks-icons{
+    display: flex;
+}
+.f-soical-network-icons{
+    margin-right: 5px;
+}
