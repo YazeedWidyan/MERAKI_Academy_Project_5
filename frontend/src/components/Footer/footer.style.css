@@ -19,9 +19,14 @@
     display: flex;
     flex-direction: column;
 }
-.social-networks-icons{
-    display: flex;
+.f-social-icons-container{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+   
 }
+/* .social-networks-icons{
+    display: flex;
+} */
 .f-soical-network-icons{
     margin-right: 5px;
 }
