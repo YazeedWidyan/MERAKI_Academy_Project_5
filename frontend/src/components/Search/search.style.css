@@ -42,7 +42,7 @@
   border-radius: 4px;
 }
 
-.card {
+.search-bar-card {
   cursor: pointer;
   display: flex;
   flex-direction: row;
