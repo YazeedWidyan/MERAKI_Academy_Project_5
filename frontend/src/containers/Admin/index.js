@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./admin.style.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserType } from "../../redux/reducers/auth";
+import { setLogout } from "../../redux/reducers/auth";
+import { getToken } from "../../redux/selectors/auth.selectors";
 
 const Admin = () => {
   //this componet is container of admin panel bussines add product edit and delete and have header of admin panel
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector(getToken);
   const [activeTab, setActiveTab] = useState(0);
   const [show, setShow] = useState(false);
   const [tabs, setTabs] = useState([
@@ -18,7 +21,8 @@ const Admin = () => {
   ]);
 
   const logout = () => {
-    dispatch(setUserType("user"));
+    dispatch(setLogout(false));
+    dispatch(setUserType(1));
     navigate("/login");
   };
 

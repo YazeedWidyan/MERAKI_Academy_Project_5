@@ -6,7 +6,7 @@ export const productsSlice = createSlice({
     products: [],
     menProducts: [],
     womenProducts: [],
-    kidsProducts:[],
+    kidsProducts: [],
   },
   reducers: {
     setProducts: (state, action) => {
@@ -17,19 +17,38 @@ export const productsSlice = createSlice({
         return product.id !== action.payload;
       });
     },
+    updateProducts: (state, action) => {
+      console.log(action.payload);
+      state.products = state.products.map((product) => {
+        if (product.id == action.payload.id) {
+          product.title = action.payload.title;
+          product.price = action.payload.price;
+          product.img = action.payload.img;
+          product.descriptions = action.payload.descriptions;
+          product.in_stock = action.payload.in_stock;
+        }
+        return product;
+      });
+    },
     setMenProducts: (state, action) => {
       state.menProducts = action.payload;
     },
     setWomenProducts: (state, action) => {
       state.womenProducts = action.payload;
     },
-    setKidsProducts: (state, action) =>{
-      state.kidsProducts = action.payload
-    }
+    setKidsProducts: (state, action) => {
+      state.kidsProducts = action.payload;
+    },
   },
 });
 
-export const { setProducts, deleteFromProducts, setMenProducts, setWomenProducts, setKidsProducts } =
-  productsSlice.actions;
+export const {
+  setProducts,
+  deleteFromProducts,
+  setMenProducts,
+  setWomenProducts,
+  setKidsProducts,
+  updateProducts,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

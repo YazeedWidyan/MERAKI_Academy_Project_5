@@ -69,6 +69,7 @@ const addProduct = (req, res) => {
 };
 const deleteProduct = (req, res) => {
   const id = req.params.id;
+  console.log(id);
   const query = `UPDATE products SET is_deleted=1 WHERE id=$1;`;
   const values = [id];
   pool
@@ -97,8 +98,10 @@ const deleteProduct = (req, res) => {
 };
 const updateProducts = (req, res) => {
   const id = req.params.id;
+  console.log(id);
   const { title, descriptions, category_id, img, price } = req.body;
-  const query = `UPDATE products SET title = COALESCE($1,title), description = COALESCE($2, description),catagory_id=COALESCE($3, catagory_id),img=COALESCE($4, img),price=COALESCE($5, price) WHERE id=$6 AND is_deleted = 0  RETURNING *;`;
+  console.log(req.body);
+  const query = `UPDATE products SET title = COALESCE($1,title), descriptions = COALESCE($2, descriptions),category_id=COALESCE($3, category_id),img=COALESCE($4, img),price=COALESCE($5, price) WHERE id=$6 AND is_deleted = 0  RETURNING *;`;
   const values = [
     title || null,
     descriptions || null,
@@ -124,6 +127,7 @@ const updateProducts = (req, res) => {
       }
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         massage: "Server Error",
