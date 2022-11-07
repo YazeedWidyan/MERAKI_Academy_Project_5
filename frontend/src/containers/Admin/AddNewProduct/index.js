@@ -1,7 +1,7 @@
 import React from "react";
 import "./addnewproduct.style.css";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const AddNewProduct = () => {
   const [title, settitle] = useState("");
@@ -37,28 +37,28 @@ const AddNewProduct = () => {
           type="text"
           placeholder="title"
         />
-           <textarea
+        <textarea
           onChange={(e) => {
             setdescriptions(e.target.value);
           }}
           type="text"
           placeholder="description"
         />
-           <input
+        <input
           onChange={(e) => {
             setcategory_id(e.target.value);
           }}
           type="number"
           placeholder="catagory"
         />
-           <input
+        <input
           onChange={(e) => {
             setimg(e.target.value);
           }}
           type="text"
           placeholder="img"
         />
-           <input
+        <input
           onChange={(e) => {
             setprice(e.target.value);
           }}

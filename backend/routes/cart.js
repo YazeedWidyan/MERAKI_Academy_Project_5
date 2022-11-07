@@ -4,14 +4,16 @@ const {
   addToCart,
   getAllCartItems,
   deleteProductFromCart,
+  emptyCartByUserId,
 } = require("../controllers/cart");
 const cartRouter = express.Router();
 
 cartRouter.post("/", authentication, addToCart);
 cartRouter.get("/", authentication, getAllCartItems);
-cartRouter.delete("/:id", deleteProductFromCart);
+cartRouter.delete("/:id", authentication, deleteProductFromCart);
+cartRouter.delete("/", authentication, emptyCartByUserId);
 console.log("role");
 
 module.exports = cartRouter;
-console.log('test');
+console.log("test");
 //a

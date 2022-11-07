@@ -2,28 +2,28 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import "./home.style.css";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   getMenProducts,
   getWomenProducts,
-  getKidsProducts
+  getKidsProducts,
 } from "../../redux/selectors/products.selectors";
 import {
   setMenProducts,
   setWomenProducts,
-  setKidsProducts
+  setKidsProducts,
 } from "../../redux/reducers/products";
 const Home = () => {
-  // const [products, setProducts] = useState([]);
-
   const menProducts = useSelector(getMenProducts);
   const womenProducts = useSelector(getWomenProducts);
-  const kidsProducts = useSelector(getKidsProducts)
+  const kidsProducts = useSelector(getKidsProducts);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const getMenItems = () => {
     axios
       .get(`http://localhost:5000/product/catgory/1`)
       .then((data) => {
+        console.log(data);
         dispatch(setMenProducts(data.data.result));
       })
       .catch((err) => {
@@ -45,27 +45,35 @@ const Home = () => {
   const getKidsItems = () => {
     axios
       .get(`http://localhost:5000/product/catgory/3`)
-      .then((data)=>{
-dispatch(setKidsProducts(data.data.result))
+      .then((data) => {
+        dispatch(setKidsProducts(data.data.result));
       })
-      .catch((err)=>{
+      .catch((err) => {
         console.log(err);
-      })
-  }
+      });
+  };
 
   useEffect(() => {
     getMenItems();
     getWomenItems();
-    getKidsItems()
+    getKidsItems();
   }, []);
+
+  const goToDetails = (id) => {
+    console.log(id);
+    navigate("/productdetails", {
+      state: id,
+    });
+  };
   return (
     <div>
       Home
       <div>
         {menProducts.map((product, i) => {
+          console.log(menProducts);
           return (
-            <div key={i}>
-              <h3>{product.category_id}</h3>
+            <div key={i} onClick={() => goToDetails(product.id)}>
+              <h3>{product.category}</h3>
               <h4>{product.title}</h4>
               <h5>{product.img}</h5>
             </div>
@@ -75,7 +83,7 @@ dispatch(setKidsProducts(data.data.result))
       <div>
         {womenProducts.map((product, i) => {
           return (
-            <div key={i}>
+            <div key={i} onClick={() => goToDetails(product.id)}>
               <h3>{product.category_id}</h3>
               <h4>{product.title}</h4>
               <h5>{product.img}</h5>
@@ -86,7 +94,7 @@ dispatch(setKidsProducts(data.data.result))
       <div>
         {kidsProducts.map((product, i) => {
           return (
-            <div key={i}>
+            <div key={i} onClick={() => goToDetails(product.id)}>
               <h3>{product.category_id}</h3>
               <h4>{product.title}</h4>
               <h5>{product.img}</h5>
