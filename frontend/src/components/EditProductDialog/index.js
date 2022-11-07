@@ -3,6 +3,8 @@ import "./EditProductDialog.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getToken } from "../../redux/selectors/auth.selectors";
+import { useDispatch } from "react-redux";
+import { updateProducts } from "../../redux/reducers/products";
 
 //this is componet for edit popup product
 const EditProductDialog = ({
@@ -16,37 +18,21 @@ const EditProductDialog = ({
   const [img, setImg] = useState(productDetails.img);
   const [descriptions, setDescriptions] = useState(productDetails.descriptions);
   const [in_stock, setin_stock] = useState(productDetails.in_stock);
-  const token = useSelector(getToken);
-
+  // const token = useSelector(getToken);
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     axios
-      .put(
-        `http://localhost:5000/product/${productDetails.id}`,
-        {
-          title,
-          price,
-          img,
-          descriptions,
-          in_stock,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .put(`http://localhost:5000/product/update/${productDetails.id}`, {
+        title,
+        price,
+        img,
+        descriptions,
+        in_stock,
+      })
       .then((res) => {
-        const newProducts = products.map((product) => {
-          if (product.id == productDetails.id) {
-            product.title = res.data.product.title;
-            product.price = res.data.product.price;
-            product.img = res.data.product.img;
-            product.descriptions = res.data.product.descriptions;
-            product.in_stock = res.data.product.in_stock;
-          }
-          return product;
-        });
-        setProducts(newProducts);
+        console.log(res.data.result);
+        dispatch(updateProducts(res.data.result));
+        // dispatch(setProducts(newProducts));
         setIsEdit(false);
       })
       .catch((err) => {
