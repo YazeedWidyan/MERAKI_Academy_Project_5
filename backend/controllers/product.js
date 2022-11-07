@@ -22,9 +22,12 @@ const getAllProducts = (req, res) => {
     });
 };
 const searchProduct = (req, res) => {
-  const letter = req.params.letter;
+  console.log("aossssssssss");
+
+  const keyword = req.query.keyword;
+  console.log(keyword);
   const query = `SELECT * FROM products
-    WHERE title LIKE '%${letter}%'`;
+    WHERE title LIKE '%${keyword}%'`;
   pool
     .query(query)
     .then((result) => {
@@ -35,6 +38,7 @@ const searchProduct = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         massage: "server error",

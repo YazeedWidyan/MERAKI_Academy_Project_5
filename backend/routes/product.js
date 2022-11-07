@@ -16,7 +16,7 @@ productRouter.get("/", getAllProducts);
 productRouter.get("/:id", getProductById);
 productRouter.put("/", updateProducts);
 productRouter.delete("/delete", deleteProduct);
-productRouter.get("/:letter", searchProduct);
+productRouter.get("/search/product", searchProduct);
 productRouter.get("/catgory/:category_id", getProductByCatagory);
 
 module.exports = productRouter;
