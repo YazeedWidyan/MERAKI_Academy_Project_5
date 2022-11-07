@@ -49,7 +49,7 @@ const searchProduct = (req, res) => {
 const addProduct = (req, res) => {
   const { title, descriptions, category_id, img, price } = req.body;
   const values = [title, descriptions, category_id, img, price];
-  const query = `INSERT INTO products (title,descriptions,category_id,img,price) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
+  const query = `INSERT INTO products (title,descriptions,category_id,img,price) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
   pool
     .query(query, values)
     .then((result) => {

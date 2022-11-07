@@ -63,6 +63,7 @@ const ProductDetails = () => {
         },
       })
       .then((res) => {
+        console.log("WISHLIST", res.data.result);
         dispatch(addToWishlist(product));
       })
       .catch((err) => {

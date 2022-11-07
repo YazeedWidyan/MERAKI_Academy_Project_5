@@ -6,7 +6,8 @@ const createNewWishlist = (req, res) => {
   const { product_id } = req.body;
   const userId = req.token.userId;
 
-  const query = "INSERT INTO wishlists(product_id, user_id) VALUES ($1,$2)";
+  const query =
+    "INSERT INTO wishlists(product_id, user_id) VALUES ($1,$2) RETURNING *";
 
   const data = [product_id, userId];
 
