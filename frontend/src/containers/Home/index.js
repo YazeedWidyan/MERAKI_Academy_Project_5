@@ -52,7 +52,7 @@ const Home = () => {
         console.log(err);
       });
   };
-
+  console.log("yazeed");
   useEffect(() => {
     getMenItems();
     getWomenItems();

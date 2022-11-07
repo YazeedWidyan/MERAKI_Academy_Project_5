@@ -38,10 +38,16 @@ const Wishlist = () => {
     }
   }, []);
 
-  const deleteProductFromWishlist = (id) => {
+  const deleteFromWishList = (id) => {
+    console.log(id);
     axios
-      .delete(`http://localhost:5000/wishlist/${id}`)
+      .delete(`http://localhost:5000/wishlist/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
+        console.log(res);
         dispatch(deleteFromWishlist(id));
       })
       .catch((err) => {
@@ -49,11 +55,56 @@ const Wishlist = () => {
       });
   };
 
+  const goToDetails = (id) => {
+    navigate("/gameDetails", {
+      state: id,
+    });
+  };
+  console.log("yazeed");
   return (
     <>
       <div className="wishlist-container">
         <div className="page-title">Wishlist</div>
-        <div className="wishlist-grid"></div>
+        <div className="wishlist-grid">
+          {wishlist.length
+            ? wishlist.map((product) => {
+                return (
+                  <div className="product-card" key={product.id}>
+                    <img
+                      onClick={() => goToDetails(product.id)}
+                      className="product-img"
+                      src={product.img}
+                      alt={product.title}
+                    />
+                    <div>
+                      <h3>{product.title}</h3>
+                      <h3>{product.price}</h3>
+                    </div>
+                    <button
+                      className="remove-from-wish-list-btn"
+                      onClick={() => {
+                        deleteFromWishList(product.id);
+                      }}
+                    >
+                      Remove from wish list
+                    </button>
+                  </div>
+                );
+              })
+            : null}
+        </div>
+        {!wishlist.length && (
+          <div className="empty-list">
+            <img
+              className="empty-list-image"
+              src="./assets/images/bankrupt.png"
+              alt="empty"
+            />
+            <div className="empty-list-text">
+              You haven't added anything to your wishlist yet.
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

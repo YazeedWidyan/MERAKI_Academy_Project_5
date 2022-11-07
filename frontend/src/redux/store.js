@@ -1,20 +1,31 @@
 import { configureStore } from "@reduxjs/toolkit";
-import templateSlice from "../redux/reducers/template/index";
-import productsSlice from "../redux/reducers/products/index";
-import authSlice from "../redux/reducers/auth/index";
-import matchesSlice from "../redux/reducers/matches/index";
-import cartSlice from "../redux/reducers/cart/index";
-import wishlistSlice from "../redux/reducers/wishlist/index";
-import categoriesSlice from "../redux/reducers/categories/index";
+import templateReducer from "./reducers/template";
+import productsReducer from "./reducers/products";
+import authReducer from "./reducers/auth";
+import matchesReducer from "./reducers/matches";
+import cartReducer from "./reducers/cart";
+import wishlistReducer from "./reducers/wishlist";
+import categoriesReducer from "./reducers/categories";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
 
-export default configureStore({
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, authReducer);
+
+export const store = configureStore({
   reducer: {
-    auth: authSlice,
-    template: templateSlice,
-    products: productsSlice,
-    matches: matchesSlice,
-    cart: cartSlice,
-    wishlist: wishlistSlice,
-    categories: categoriesSlice,
+    auth: persistedReducer,
+    template: templateReducer,
+    products: productsReducer,
+    matches: matchesReducer,
+    cart: cartReducer,
+    wishlist: wishlistReducer,
+    categories: categoriesReducer,
   },
 });
+console.log("yazeed");
+export const persistor = persistStore(store);
