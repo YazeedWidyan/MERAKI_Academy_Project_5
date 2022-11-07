@@ -5,6 +5,7 @@ import { setLogout } from "../../redux/reducers/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../../redux/selectors/auth.selectors";
 import { useNavigate, Link } from "react-router-dom";
+import Search from "../Search";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -65,6 +66,7 @@ const Header = () => {
             </div>
             <div className="search-wrapper">
               <div className="text-btn">
+                <Search />
                 <FaSearch size={18} />
               </div>
               <div className="text-btn">
