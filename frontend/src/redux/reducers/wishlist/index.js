@@ -11,10 +11,7 @@ export const wishlistSlice = createSlice({
       state.wishlist = action.payload;
     },
     addToWishlist: (state, action) => {
-      console.log(action.payload);
-      state.wishlist = state.wishlist.map((product) => {
-        return [...product, action.payload];
-      });
+      state.wishlist.push(action.payload);
       console.log(state.wishlist);
     },
     deleteFromWishlist: (state, action) => {

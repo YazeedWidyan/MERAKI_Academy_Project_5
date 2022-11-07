@@ -17,9 +17,9 @@ const Wishlist = () => {
   console.log(wishlist);
 
   useEffect(() => {
-    // if (!token) {
-    //   navigate("/login");
-    // }
+    if (!token) {
+      navigate("/login");
+    }
 
     if (wishlist.length === 0) {
       axios
@@ -29,6 +29,7 @@ const Wishlist = () => {
           },
         })
         .then((res) => {
+          console.log(res.data.result);
           dispatch(setWishlist(res.data.result));
           console.log(res.data.result);
         })

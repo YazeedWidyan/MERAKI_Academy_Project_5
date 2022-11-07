@@ -11,10 +11,19 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector(getToken);
+  console.log(token);
 
   const logout = () => {
     dispatch(setLogout(false));
     navigate("/login");
+  };
+
+  const goToWishlist = () => {
+    navigate("/wishlist");
+  };
+
+  const goToHome = () => {
+    navigate("/");
   };
   return (
     <>
@@ -46,7 +55,7 @@ const Header = () => {
               </Link>
             </div>
           )}
-          <div className="text-btn">
+          <div onClick={goToWishlist} className="text-btn">
             <FaHeart />
             <span>Wishlist</span>
             <span>(0)</span>
@@ -60,7 +69,9 @@ const Header = () => {
           </div>
           <div className="bottom-header-right-wrapper">
             <div className="navigation-wrapper">
-              <div className="navigation-btn">Home</div>
+              <div onClick={goToHome} className="navigation-btn">
+                Home
+              </div>
               <div className="navigation-btn">Shop</div>
               <div className="navigation-btn">Match</div>
             </div>
