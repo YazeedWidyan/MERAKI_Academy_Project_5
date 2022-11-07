@@ -27,7 +27,7 @@ const AddNewProduct = () => {
   };
   return (
     <>
-      <div>
+      <div className="add">
         <p>new product</p>
         <br />
         <input
@@ -65,6 +65,7 @@ const AddNewProduct = () => {
           type="number"
           placeholder="price"
         />
+        <button onClick={()=>{addProduct()}}>ADD</button>
       </div>
     </>
   );
