@@ -5,46 +5,40 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogin, setUserId, setUserType } from "../../redux/reducers/auth";
 import { getIsLoggedIn } from "../../redux/selectors/auth.selectors";
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { gapi } from 'gapi-script';
-
-
-
-
-
+import { GoogleLogin } from "react-google-login";
+import { gapi } from "gapi-script";
+console.log("yazeed");
 const Login = () => {
+  const clientId =
+    "646674207004-f5s33oa3mbvsq5rnhthd67bnmjj439pg.apps.googleusercontent.com";
 
-  const clientId="646674207004-f5s33oa3mbvsq5rnhthd67bnmjj439pg.apps.googleusercontent.com"
- 
-    useEffect(() => {
-      function start() {
-        gapi.client.init({
-          clientId: clientId,
-          scope: 'email',
-        });
-      }
-  
-      gapi.load('client:auth2', start);
-    }, []);
-  
-    const onSuccess = response => {
-      console.log('SUCCESS', response);
-      console.log(response.googleId);
-      dispatch(setLogin(response.tokenId));
-      dispatch(setUserId(response.googleId));
-      dispatch(setUserType(1));
-   
-        navigate("/");
- 
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "email",
+      });
+    }
 
-    };
-    const onFailure = response => {
-      console.log('FAILED', response);
-    };
-    const onLogoutSuccess = () => {
-      console.log('SUCESS LOG OUT');
-    };
-  
+    gapi.load("client:auth2", start);
+  }, []);
+
+  const onSuccess = (response) => {
+    console.log("SUCCESS", response);
+    console.log(response.googleId);
+    dispatch(setLogin(response.tokenId));
+    dispatch(setUserId(response.googleId));
+    dispatch(setUserType(1));
+
+    navigate("/");
+  };
+  const onFailure = (response) => {
+    console.log("FAILED", response);
+  };
+  const onLogoutSuccess = () => {
+    console.log("SUCESS LOG OUT");
+  };
+
   const state = useSelector(getIsLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,7 +52,7 @@ const Login = () => {
       })
       .then((result) => {
         console.log(result);
-   
+
         dispatch(setLogin(result.data.token));
         dispatch(setUserId(result.data.userId));
         dispatch(setUserType(result.data.role));
@@ -96,17 +90,12 @@ const Login = () => {
           Login
         </button>
         <div>
-      <GoogleLogin
-        clientId={clientId}
-        onSuccess={onSuccess}
-        onFailure={onFailure}
-      />
-      <GoogleLogout
-        clientId={clientId}
-        onLogoutSuccess={onLogoutSuccess}
-      />
-    </div>
-        
+          <GoogleLogin
+            clientId={clientId}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+          />
+        </div>
       </div>
     </>
   );

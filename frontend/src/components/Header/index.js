@@ -21,6 +21,9 @@ const Header = () => {
   const goToWishlist = () => {
     navigate("/wishlist");
   };
+  const goToCart = () => {
+    navigate("/cart");
+  };
 
   const goToHome = () => {
     navigate("/");
@@ -80,7 +83,7 @@ const Header = () => {
                 <Search />
                 <FaSearch size={18} />
               </div>
-              <div className="text-btn">
+              <div className="text-btn" onClick={goToCart}>
                 <span className="cart-count-indicator">{0}</span>
                 <FaShoppingBasket size={22} />
               </div>
