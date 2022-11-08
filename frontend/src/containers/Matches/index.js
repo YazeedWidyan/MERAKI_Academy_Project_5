@@ -2,10 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./matches.style.css";
 
 const Matches = () => {
   const [matches, setMatches] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -17,7 +20,22 @@ const Matches = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    axios
+      .get(`http://localhost:5000/match/number/2`)
+      .then((res) => {
+        console.log(res.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
+
+  const goToMatchPage = (id) => {
+    navigate("/matchpage", {
+      state: id,
+    });
+  };
 
   return (
     <>
@@ -26,7 +44,13 @@ const Matches = () => {
         <div className="matches-grid">
           {matches.map((match, i) => {
             return (
-              <div className="match-card" key={i}>
+              <div
+                onClick={() => {
+                  goToMatchPage(match.id);
+                }}
+                className="match-card"
+                key={i}
+              >
                 <div className="match-title">{match.title}</div>
                 <img
                   className="match-img"

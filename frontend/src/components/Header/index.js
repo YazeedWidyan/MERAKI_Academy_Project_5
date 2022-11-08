@@ -26,6 +26,9 @@ const Header = () => {
   const goToHome = () => {
     navigate("/");
   };
+  const goToMatch = () => {
+    navigate("/matches");
+  };
   return (
     <>
       {/* <div className="overlay">
@@ -75,7 +78,9 @@ const Header = () => {
                 Home
               </div>
               <div className="navigation-btn">Shop</div>
-              <div className="navigation-btn">Match</div>
+              <div className="navigation-btn" onClick={goToMatch}>
+                Match
+              </div>
             </div>
             <div className="search-wrapper">
               <div className="text-btn">
