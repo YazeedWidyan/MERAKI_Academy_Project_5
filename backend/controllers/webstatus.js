@@ -1,12 +1,10 @@
 const { pool } = require("../models/db");
-console.log("yazeed");
 const getCountUsers = (req, res) => {
   const query = "SELECT COUNT(*) FROM users";
 
   pool
     .query(query)
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         success: true,
         message: "All users count",
@@ -28,7 +26,6 @@ const getCountOrders = (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         success: true,
         message: "All orders count",
@@ -50,7 +47,6 @@ const getCountProducts = (req, res) => {
   pool
     .query(query)
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         success: true,
         message: "All products count",

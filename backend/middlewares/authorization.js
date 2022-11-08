@@ -1,5 +1,5 @@
 const { pool } = require("../models/db");
-console.log("yazeed");
+
 const authorization = (string) => {
   return async (req, res, next) => {
     const role = req.token.role;

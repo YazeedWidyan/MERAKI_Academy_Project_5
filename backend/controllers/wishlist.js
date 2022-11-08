@@ -62,7 +62,6 @@ const getWishlistById = (req, res) => {
 };
 
 const deleteProductFromWishlistById = (req, res) => {
-  console.log("abbas");
   const userId = req.token.userId;
 
   const id = req.params.id;
