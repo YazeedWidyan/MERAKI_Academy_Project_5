@@ -1,3 +1,27 @@
 .add{
     display: grid;
 }
+ input{
+    border-radius: 4px;
+    border: solid 1px hsl(0, 0%, 80%);
+    padding: 12px;
+    width: 90%;
+  } 
+ textarea{
+    border-radius: 4px;
+    border: solid 1px hsl(0, 0%, 80%);
+    padding: 12px;
+    width: 90%;
+  } 
+ button{
+    background-color: #7fd410;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    color: white;
+    min-width: 21%;
+  }
+  button:hover {
+    cursor: pointer;
+    color: rgb(241, 24, 24);
+  }

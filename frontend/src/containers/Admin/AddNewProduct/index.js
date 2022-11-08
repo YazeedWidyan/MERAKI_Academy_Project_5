@@ -109,6 +109,7 @@ setUrl(data.url)
         <button
           onClick={() => {
             addProduct();
+          
           }}
         >
           ADD
