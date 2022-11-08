@@ -18,7 +18,6 @@ export const productsSlice = createSlice({
       });
     },
     updateProducts: (state, action) => {
-      console.log(action.payload);
       state.products = state.products.map((product) => {
         if (product.id == action.payload.id) {
           product.title = action.payload.title;

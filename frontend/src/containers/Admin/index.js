@@ -25,7 +25,6 @@ const Admin = () => {
     dispatch(setUserType(1));
     navigate("/login");
   };
-  console.log("asasa");
   const handleTabs = (tab, index) => {
     setActiveTab(index);
     navigate(tab);

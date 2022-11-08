@@ -2,8 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 require("./models/db");
-console.log("testyazeed");
-//routers
 const wishlistRouter = require("./routes/wishlist");
 const paymentRouter = require("./routes/payment");
 const matchRouter = require("./routes/match");
@@ -17,11 +15,9 @@ const userRouter = require("./routes/users");
 const orderRouter = require("./routes/order");
 
 const app = express();
-console.log("aa");
 app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
-// router middleware
 app.use("/wishlist", wishlistRouter);
 app.use("/payment", paymentRouter);
 app.use("/cart", cartRouter);

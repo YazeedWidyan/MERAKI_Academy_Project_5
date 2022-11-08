@@ -4,10 +4,6 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const paymentCheckout = async (req, res) => {
   const cart = req.body;
-  console.log(cart);
-  // const cart = [
-  //   { title: "chelsea shirt", description: "2022 shirt", price: 20 }, //test card
-  // ];
 
   const line_items = cart.map((item) => {
     return {

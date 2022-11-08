@@ -14,6 +14,3 @@ wishlistRouter.get("/", authentication, getWishlistById);
 wishlistRouter.delete("/:id", authentication, deleteProductFromWishlistById);
 
 module.exports = wishlistRouter;
-
-console.log("test");
-//aa

@@ -27,5 +27,4 @@ export const store = configureStore({
     categories: categoriesReducer,
   },
 });
-console.log("yazeed");
 export const persistor = persistStore(store);

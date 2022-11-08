@@ -7,7 +7,6 @@ import { setLogin, setUserId, setUserType } from "../../redux/reducers/auth";
 import { getIsLoggedIn } from "../../redux/selectors/auth.selectors";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
-console.log("yazeed");
 const Login = () => {
   const clientId =
     "646674207004-f5s33oa3mbvsq5rnhthd67bnmjj439pg.apps.googleusercontent.com";
@@ -19,13 +18,10 @@ const Login = () => {
         scope: "email",
       });
     }
-    console.log("asa");
     gapi.load("client:auth2", start);
   }, []);
 
   const onSuccess = (response) => {
-    console.log("SUCCESS", response);
-    console.log(response.googleId);
     dispatch(setLogin(response.tokenId));
     dispatch(setUserId(response.googleId));
     dispatch(setUserType(1));
@@ -51,8 +47,6 @@ const Login = () => {
         password,
       })
       .then((result) => {
-        console.log(result);
-
         dispatch(setLogin(result.data.token));
         dispatch(setUserId(result.data.userId));
         dispatch(setUserType(result.data.role));

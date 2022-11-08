@@ -11,11 +11,9 @@ const Search = () => {
 
   const getData = (key) => {
     setKeyword(key);
-    console.log(key);
     axios
       .get(`http://localhost:5000/product/search/product?keyword=${keyword}`)
       .then((res) => {
-        console.log(res.data);
         setSearchResult(res.data.result.slice(0, 3));
       })
       .catch((err) => {
@@ -30,7 +28,6 @@ const Search = () => {
     setSearchResult([]);
     setKeyword("");
   };
-  console.log("yazeed");
 
   return (
     <>

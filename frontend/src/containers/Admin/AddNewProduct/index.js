@@ -31,7 +31,6 @@ const AddNewProduct = () => {
     const base64 = await convertBase64(file);
     setimg(base64);
   };
-  console.log("adasss");
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();

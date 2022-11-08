@@ -14,8 +14,6 @@ const Wishlist = () => {
   const wishlist = useSelector(getWishlist);
   const dispatch = useDispatch();
 
-  console.log(wishlist);
-
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -29,9 +27,7 @@ const Wishlist = () => {
           },
         })
         .then((res) => {
-          console.log(res.data.result);
           dispatch(setWishlist(res.data.result));
-          console.log(res.data.result);
         })
         .catch((err) => {
           console.log(err);
@@ -40,7 +36,6 @@ const Wishlist = () => {
   }, []);
 
   const deleteFromWishList = (id) => {
-    console.log(id);
     axios
       .delete(`http://localhost:5000/wishlist/${id}`, {
         headers: {
@@ -48,21 +43,18 @@ const Wishlist = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch(deleteFromWishlist(id));
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  console.log("yaze");
 
   const goToDetails = (id) => {
     navigate("/gameDetails", {
       state: id,
     });
   };
-  console.log("yazeed");
   return (
     <>
       <div className="wishlist-container">

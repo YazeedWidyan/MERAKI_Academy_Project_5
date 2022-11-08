@@ -7,7 +7,6 @@ const createNewRole = (req, res) => {
   pool
     .query(query, data)
     .then((result) => {
-      console.log(result);
       res.status(201).json({
         success: true,
         message: "Success role created",

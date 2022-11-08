@@ -40,7 +40,6 @@ const ProductDetails = () => {
     axios
       .get(`http://localhost:5000/product/${location.state}`)
       .then((res) => {
-        console.log(res.data);
         setProduct(res.data.product.rows[0]);
       })
       .catch((err) => {
@@ -60,7 +59,6 @@ const ProductDetails = () => {
   }, [location, wishlist, cart]);
 
   const addToWishList = () => {
-    console.log("sdas");
     if (!token) return navigate("/login");
     const data = {
       product_id: product.id,
@@ -73,7 +71,6 @@ const ProductDetails = () => {
         },
       })
       .then((res) => {
-        console.log("WISHLIST", res.data.result);
         dispatch(addToWishlist(product));
       })
       .catch((err) => {
@@ -82,7 +79,6 @@ const ProductDetails = () => {
   };
 
   const addToCart = () => {
-    console.log("sdas");
     if (!token) return navigate("/login");
     const data = {
       product_id: product.id,
@@ -95,7 +91,6 @@ const ProductDetails = () => {
         },
       })
       .then((res) => {
-        console.log("Cart", res.data.result);
         dispatch(addItemToCart(product));
       })
       .catch((err) => {
@@ -111,9 +106,7 @@ const ProductDetails = () => {
     if (quantity === 1) return;
     setQuantity((prev) => prev - 1);
   };
-  console.log("yazeed");
   const deleteFromWishList = (id) => {
-    console.log(id);
     axios
       .delete(`http://localhost:5000/wishlist/${id}`, {
         headers: {
@@ -130,7 +123,6 @@ const ProductDetails = () => {
   };
 
   const deleteFromCart = (id) => {
-    console.log(id);
     axios
       .delete(`http://localhost:5000/cart/${id}`, {
         headers: {
@@ -138,7 +130,6 @@ const ProductDetails = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch(deleteItemFromCart(id));
       })
       .catch((err) => {

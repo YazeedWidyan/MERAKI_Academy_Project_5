@@ -51,8 +51,6 @@ const getAllMatches = (req, res) => {
 const updateAMatchById = (req, res) => {
   const id = req.params.id;
   const { teamNumber, postionNumber } = req.body;
-  console.log(teamNumber);
-  console.log(postionNumber);
 
   const data = [id];
 

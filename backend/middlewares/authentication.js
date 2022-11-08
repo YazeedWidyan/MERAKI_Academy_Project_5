@@ -6,7 +6,6 @@ const authentication = (req, res, next) => {
     return;
   }
   const token = req.headers.authorization.split(" ").pop();
-  console.log(token);
 
   const secretKey = process.env.SECRET;
 
