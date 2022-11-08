@@ -16,8 +16,9 @@
 .cart-right-wrapper {
   flex: 1;
 }
+
 .cart-card {
-  background-color: rgb(32, 32, 32);
+  background-color: rgb(209, 209, 209);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +48,7 @@
 }
 .cart-outline-btn {
   cursor: pointer;
-  color: rgba(245, 245, 245, 0.6);
+  color: rgba(214, 0, 0, 0.995);
   padding-bottom: 2px;
   align-self: flex-end;
   border-bottom: solid 1px rgba(245, 245, 245, 0.6);
@@ -71,10 +72,11 @@
 .cart-checkout-btn {
   font-size: 12px;
   border-radius: 4px;
-  background-color: #1212c5;
+  background-color: #090909;
   text-align: center;
   height: 50px;
   display: flex;
+  color: white;
   justify-content: center;
   align-items: center;
   cursor: pointer;

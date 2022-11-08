@@ -25,7 +25,7 @@ const Admin = () => {
     dispatch(setUserType(1));
     navigate("/login");
   };
-
+  console.log("asasa");
   const handleTabs = (tab, index) => {
     setActiveTab(index);
     navigate(tab);
@@ -105,7 +105,7 @@ const Admin = () => {
                     ? {
                         borderRadius: "4px",
                         padding: "12px",
-                        backgroundColor: "rgb(34 43 214)",
+                        backgroundColor: "#0047AB",
                         color: "white",
                       }
                     : { borderRadius: "4px", padding: "12px", color: "white" }

@@ -19,7 +19,7 @@ const Login = () => {
         scope: "email",
       });
     }
-
+    console.log("asa");
     gapi.load("client:auth2", start);
   }, []);
 
@@ -68,21 +68,24 @@ const Login = () => {
   };
   return (
     <>
-      <div className="login">
+      <div className="login-container">
         <p>login</p>
         <input
+          className="auth-input"
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
+          className="auth-input"
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
         <button
+          className="login-btn"
           onClick={() => {
             login();
           }}

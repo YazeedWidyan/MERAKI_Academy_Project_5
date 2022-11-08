@@ -25,6 +25,25 @@ const AddNewProduct = () => {
         console.log(err);
       });
   };
+
+  const uploadImg = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertBase64(file);
+    setimg(base64);
+  };
+  console.log("adasss");
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
   return (
     <>
       <div className="add">
@@ -51,12 +70,15 @@ const AddNewProduct = () => {
           type="number"
           placeholder="catagory"
         />
+        <label>Img:</label>
+        <br />
         <input
+          className="image-input-field"
+          type="file"
+          required
           onChange={(e) => {
-            setimg(e.target.value);
+            uploadImg(e);
           }}
-          type="text"
-          placeholder="img"
         />
         <input
           onChange={(e) => {
@@ -65,7 +87,13 @@ const AddNewProduct = () => {
           type="number"
           placeholder="price"
         />
-        <button onClick={()=>{addProduct()}}>ADD</button>
+        <button
+          onClick={() => {
+            addProduct();
+          }}
+        >
+          ADD
+        </button>
       </div>
     </>
   );
