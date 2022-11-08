@@ -18,7 +18,6 @@ const EditProductDialog = ({
   const [img, setImg] = useState(productDetails.img);
   const [descriptions, setDescriptions] = useState(productDetails.descriptions);
   const [in_stock, setin_stock] = useState(productDetails.in_stock);
-  console.log("yazeed");
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     axios
@@ -30,7 +29,6 @@ const EditProductDialog = ({
         in_stock,
       })
       .then((res) => {
-        console.log(res.data.result);
         dispatch(updateProducts(res.data.result));
         setIsEdit(false);
       })
