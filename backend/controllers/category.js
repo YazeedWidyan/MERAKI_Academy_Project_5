@@ -1,6 +1,7 @@
 const { pool } = require("../models/db");
 const getAllCatagories = (req, res) => {
-  const query = `SELECT * FROM categories  WHERE is_deleted=0 ORDER BY 1;`;
+  console.log('...........');
+  const query = `SELECT * FROM categories ORDER BY 1;`;
   pool
     .query(query)
     .then((result) => {
@@ -11,6 +12,7 @@ const getAllCatagories = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         massage: "server error",

@@ -15,7 +15,7 @@ import Wishlist from "../containers/Wishlist";
 import Login from "../containers/Login";
 import Register from "../containers/Register";
 import Matches from "../containers/Matches";
-
+import Store from "../containers/Store";
 import { useSelector } from "react-redux";
 import { getIsLoggedIn, getUserType } from "../redux/selectors/auth.selectors";
 import Header from "../components/Header";
@@ -45,6 +45,7 @@ const Router = () => {
         <Route path="checkout-success" element={<CheckoutSuccess />} />
         <Route path="contactUs" element={<ContactUs />} />
         <Route path="wishlist" element={<Wishlist />} />
+        <Route path="store" element={<Store />} />
         {!isLoggedIn && (
           <>
             <Route path="login" element={<Login />} />
