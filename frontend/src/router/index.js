@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { getIsLoggedIn, getUserType } from "../redux/selectors/auth.selectors";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import MatchPage from "../containers/Matches/MatchPage";
 
 const Router = () => {
   const userType = useSelector(getUserType);
@@ -37,7 +38,9 @@ const Router = () => {
         </Route>
         <Route path="productdetails" element={<ProductDetails />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="matches" element={<Matches />} />
+        <Route path="matches" element={<Matches />}>
+          <Route path="matchpage" element={<MatchPage />} />
+        </Route>
         <Route path="checkout" element={<Checkout />} />
         <Route path="checkout-success" element={<CheckoutSuccess />} />
         <Route path="contactUs" element={<ContactUs />} />
