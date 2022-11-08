@@ -67,12 +67,16 @@ const Home = () => {
   };
   return (
     <div>
-      Home
       <div className="categroy-container">
         {menProducts.map((product, i) => {
           console.log(menProducts);
           return (
-            <div key={i}>
+            <div
+              key={i}
+              onClick={() => {
+                goToDetails(product.id);
+              }}
+            >
               <h3>Men</h3>
               <h4>{product.title}</h4>
               <h5>image {product.img}</h5>
@@ -83,7 +87,12 @@ const Home = () => {
       <div className="categroy-container">
         {womenProducts.map((product, i) => {
           return (
-            <div key={i}>
+            <div
+              key={i}
+              onClick={() => {
+                goToDetails(product.id);
+              }}
+            >
               <h3>Women</h3>
               <h4>{product.title}</h4>
               <h5>image {product.img}</h5>
@@ -94,7 +103,12 @@ const Home = () => {
       <div className="categroy-container">
         {kidsProducts.map((product, i) => {
           return (
-            <div key={i}>
+            <div
+              key={i}
+              onClick={() => {
+                goToDetails(product.id);
+              }}
+            >
               <h3>Kids</h3>
               <h4>{product.title}</h4>
               <h5>image {product.img}</h5>

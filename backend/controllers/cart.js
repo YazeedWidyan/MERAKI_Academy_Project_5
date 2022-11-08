@@ -27,12 +27,13 @@ const addToCart = (req, res) => {
 const getAllCartItems = (req, res) => {
   const id = req.token.userId;
   const data = [id];
-  console.log();
+  console.log("cart", id);
   const query =
     "SELECT * FROM carts INNER JOIN products ON carts.product_id = products.id WHERE carts.user_id = $1";
   pool
     .query(query, data)
     .then((result) => {
+      console.log(result);
       res.status(201).json({
         success: true,
         message: "All the cart products",
@@ -48,6 +49,7 @@ const getAllCartItems = (req, res) => {
     });
 };
 const deleteProductFromCart = (req, res) => {
+  console.log("abbas");
   const userId = req.token.userId;
 
   const id = req.params.id;

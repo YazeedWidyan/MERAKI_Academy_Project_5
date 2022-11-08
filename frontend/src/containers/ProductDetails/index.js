@@ -4,6 +4,8 @@ import {
   addToWishlist,
   deleteFromWishlist,
 } from "../../redux/reducers/wishlist";
+import { addItemToCart } from "../../redux/reducers/cart";
+import { deleteItemFromCart } from "../../redux/reducers/cart";
 import {
   FaShoppingCart,
   FaHeart,
@@ -15,6 +17,7 @@ import "./productDetails.style.css";
 import { getToken, getUserId } from "../../redux/selectors/auth.selectors";
 import { useSelector, useDispatch } from "react-redux";
 import { getWishlist } from "../../redux/selectors/wishlist.selectors";
+import { getCart } from "../../redux/selectors/cart.selectors";
 import axios from "axios";
 
 const ProductDetails = () => {
@@ -26,10 +29,12 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
 
   const [inWishlist, setInWishlist] = useState(false);
+  const [inCart, setInCart] = useState(false);
   const token = useSelector(getToken);
 
   // const userId = useSelector(getUserId);
   const wishlist = useSelector(getWishlist);
+  const cart = useSelector(getCart);
 
   useEffect(() => {
     axios
@@ -46,8 +51,13 @@ const ProductDetails = () => {
       return item.id === location.state;
     });
 
+    const foundInCart = cart.find((item) => {
+      return item.id === location.state;
+    });
+
     setInWishlist(foundInWish);
-  }, [location, wishlist]);
+    setInCart(foundInCart);
+  }, [location, wishlist, cart]);
 
   const addToWishList = () => {
     console.log("sdas");
@@ -70,6 +80,29 @@ const ProductDetails = () => {
         console.log(err);
       });
   };
+
+  const addToCart = () => {
+    console.log("sdas");
+    if (!token) return navigate("/login");
+    const data = {
+      product_id: product.id,
+    };
+
+    axios
+      .post(`http://localhost:5000/cart`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log("Cart", res.data.result);
+        dispatch(addItemToCart(product));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const increament = () => {
     setQuantity((prev) => prev + 1);
   };
@@ -90,6 +123,23 @@ const ProductDetails = () => {
       .then((res) => {
         console.log(res);
         dispatch(deleteFromWishlist(id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const deleteFromCart = (id) => {
+    console.log(id);
+    axios
+      .delete(`http://localhost:5000/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch(deleteItemFromCart(id));
       })
       .catch((err) => {
         console.log(err);
@@ -136,16 +186,39 @@ const ProductDetails = () => {
                   <FaPlus />
                 </div>
               </div>
-              <button className="btn">
-                {loading ? (
-                  <span className="btn-spinner"></span>
-                ) : (
-                  <>
-                    <FaShoppingCart />
-                    add to cart
-                  </>
-                )}
-              </button>
+              {inCart ? (
+                <button
+                  className="btn"
+                  onClick={() => {
+                    deleteFromCart(product.id);
+                  }}
+                >
+                  {loading ? (
+                    <span className="btn-spinner"></span>
+                  ) : (
+                    <>
+                      <FaShoppingCart />
+                      remove to cart
+                    </>
+                  )}
+                </button>
+              ) : (
+                <button
+                  className="btn"
+                  onClick={() => {
+                    addToCart(product.id);
+                  }}
+                >
+                  {loading ? (
+                    <span className="btn-spinner"></span>
+                  ) : (
+                    <>
+                      <FaShoppingCart />
+                      add to cart
+                    </>
+                  )}
+                </button>
+              )}
               {inWishlist ? (
                 <button
                   onClick={() => {
