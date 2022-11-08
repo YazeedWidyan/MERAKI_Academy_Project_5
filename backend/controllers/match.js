@@ -27,6 +27,32 @@ const createAMatch = (req, res) => {
     });
 };
 
+const getMatchById = (req, res) => {
+  console.log("ada");
+  console.log("asdas");
+  const id = req.params.id;
+
+  const data = [id];
+  const query = "SELECT * FROM matches WHERE id = $1";
+
+  pool
+    .query(query, data)
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: "Get match the with id",
+        result: result.rows,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+        err: err.message,
+      });
+    });
+};
+
 const getAllMatches = (req, res) => {
   const query = "SELECT * FROM matches";
 
@@ -101,4 +127,5 @@ module.exports = {
   getAllMatches,
   updateAMatchById,
   deleteAMatchById,
+  getMatchById,
 };
