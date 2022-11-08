@@ -8,14 +8,16 @@ const AddNewProduct = () => {
   const [descriptions, setdescriptions] = useState("");
   const [category_id, setcategory_id] = useState(0);
   const [img, setimg] = useState("");
+  const [ url, setUrl ] = useState("");
   const [price, setprice] = useState(0);
+  console.log(url);
   const addProduct = () => {
     axios
       .post(`http://localhost:5000/product/add`, {
         title,
         descriptions,
         category_id,
-        img,
+        img:url,
         price,
       })
       .then((result) => {
@@ -26,23 +28,39 @@ const AddNewProduct = () => {
       });
   };
 
-  const uploadImg = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertBase64(file);
-    setimg(base64);
-  };
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
+const uploadImage = () => {
+const data = new FormData()
+data.append("file", img)
+data.append("upload_preset", "sportblue")
+data.append("cloud_name","dt8h9hj39")
+fetch(" https://api.cloudinary.com/v1_1/dt8h9hj39/image/upload",{
+method:"post",
+body: data
+})
+.then(resp => resp.json())
+.then(data => {
+setUrl(data.url)
+})
+.catch(err => console.log(err))
+}
+
+  // const uploadImg = async (e) => {
+  //   const file = e.target.files[0];
+  //   const base64 = await convertBase64(file);
+  //   setimg(base64);
+  // };
+  // const convertBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
   return (
     <>
       <div className="add">
@@ -76,9 +94,11 @@ const AddNewProduct = () => {
           type="file"
           required
           onChange={(e) => {
-            uploadImg(e);
+           // uploadImg(e);
+            setimg(e.target.files[0])
           }}
         />
+        <button onClick={uploadImage}>Upload</button>
         <input
           onChange={(e) => {
             setprice(e.target.value);
