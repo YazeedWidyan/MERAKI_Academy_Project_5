@@ -44,6 +44,7 @@ const ProductsList = () => {
       setMessage("Error happened while Get Data, please try again");
     }
   };
+  console.log("aa");
 
   const showEdit = (product) => {
     setIsEdit(true);
@@ -87,15 +88,15 @@ const ProductsList = () => {
                 <td data-label="Actions">
                   <div className="actions-btns">
                     <div className="edit-btn" onClick={() => showEdit(product)}>
-                      green{" "}
+                      Update{" "}
                     </div>
                     <div
-                      className="edit-btn"
+                      className="delete-btn"
                       onClick={() => {
                         deleteProduct(product.id);
                       }}
                     >
-                      red{" "}
+                      Delete{" "}
                     </div>
                   </div>
                 </td>

@@ -17,8 +17,8 @@ const userRouter = require("./routes/users");
 const orderRouter = require("./routes/order");
 
 const app = express();
-
-app.use(express.json());
+console.log("aa");
+app.use(express.json({ limit: "50mb" }));
 app.use(cors());
 
 // router middleware

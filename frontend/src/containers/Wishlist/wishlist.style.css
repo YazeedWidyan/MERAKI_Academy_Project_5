@@ -34,12 +34,12 @@
 .remove-from-wish-list-btn {
   border-radius: 4px;
   font-size: 16px;
-  background-color: transparent;
-  color: gray;
+  background-color: rgb(208, 0, 0);
+  color: rgb(251, 251, 251);
 }
 
 .remove-from-wish-list-btn:hover {
-  color: white;
+  background-color: rgb(255, 0, 0);
   cursor: pointer;
 }
 

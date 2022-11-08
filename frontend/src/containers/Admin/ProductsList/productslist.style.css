@@ -82,6 +82,35 @@ table th {
 .edit-btn {
   margin-right: 8px;
   cursor: pointer;
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+.edit-btn:hover {
+  margin-right: 8px;
+  cursor: pointer;
+  background-color: rgb(12, 99, 12);
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.delete-btn {
+  margin-right: 8px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+.delete-btn:hover {
+  margin-right: 8px;
+  cursor: pointer;
+  background-color: rgb(183, 0, 0);
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .reload-btn {
@@ -95,5 +124,5 @@ table th {
 }
 
 .reload-btn:hover {
-  background-color: #1a4bd0;
+  background-color: #0047ab;
 }

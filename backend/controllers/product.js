@@ -47,6 +47,8 @@ const searchProduct = (req, res) => {
     });
 };
 const addProduct = (req, res) => {
+  console.log(req.body);
+  console.log("aa");
   const { title, descriptions, category_id, img, price } = req.body;
   const values = [title, descriptions, category_id, img, price];
   const query = `INSERT INTO products (title,descriptions,category_id,img,price) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
@@ -60,6 +62,7 @@ const addProduct = (req, res) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json({
         success: false,
         massage: "Server error",

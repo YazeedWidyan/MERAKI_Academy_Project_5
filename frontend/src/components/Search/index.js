@@ -30,6 +30,7 @@ const Search = () => {
     setSearchResult([]);
     setKeyword("");
   };
+  console.log("yazeed");
 
   return (
     <>
@@ -60,14 +61,13 @@ const Search = () => {
               );
             })}
             {searchResult.length >= 3 && (
-              <div className="search-view-more-btn">view more</div>
+              <div className="search-view-more-btn"></div>
             )}
           </div>
         ) : (
           keyword && (
             <div className="search-box">
               <div className="no-matching-found">No matching titles found</div>
-              <div className="search-view-more-btn">Browse all</div>
             </div>
           )
         )}

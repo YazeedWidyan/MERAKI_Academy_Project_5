@@ -71,9 +71,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px 22px;
-  background-color: #212121;
+  background-color: #2d2d2d;
   color: #999;
   font-size: 12px;
+  border-bottom: 6px solid #0047ab;
 }
 
 .top-header-section {

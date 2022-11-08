@@ -24,7 +24,7 @@ const Header = () => {
   const goToCart = () => {
     navigate("/cart");
   };
-
+  console.log("yazeed");
   const goToHome = () => {
     navigate("/");
   };
@@ -37,11 +37,12 @@ const Header = () => {
           </div>
         </div>
       </div> */}
+
       <div className="top-header-wrapper">
         <div className="top-header-section">
           <div>Hotline : +123 456 7890</div>
           <div>|</div>
-          <div>Welcome to StoreName</div>
+          <div>Welcome to Blue Lock</div>
         </div>
         <div className="top-header-section">
           {token ? (

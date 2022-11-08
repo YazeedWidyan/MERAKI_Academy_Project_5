@@ -55,6 +55,7 @@ const Wishlist = () => {
         console.log(err);
       });
   };
+  console.log("yaze");
 
   const goToDetails = (id) => {
     navigate("/gameDetails", {
@@ -87,7 +88,7 @@ const Wishlist = () => {
                         deleteFromWishList(product.id);
                       }}
                     >
-                      Remove from wish list
+                      Remove From Wishlist
                     </button>
                   </div>
                 );
