@@ -23,7 +23,7 @@ const CheckoutSuccess = () => {
         dispatch(setCart([]));
       })
       .catch((err) => {
-        console.lg(err);
+        console.log(err);
       });
   }, []);
 
