@@ -73,7 +73,7 @@ const updateAMatchById = (req, res) => {
       });
     });
 };
-
+console.log("ada");
 const deleteAMatchById = (req, res) => {
   const id = req.params.id;
   const data = [id];

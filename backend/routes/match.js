@@ -7,7 +7,7 @@ const {
 } = require("../controllers/match");
 
 const matchRouter = express.Router();
-
+console.log("aa");
 matchRouter.post("/", createAMatch);
 matchRouter.get("/", getAllMatches);
 matchRouter.put("/:id", updateAMatchById);
