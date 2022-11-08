@@ -10,6 +10,7 @@ const matchRouter = express.Router();
 
 matchRouter.post("/", createAMatch);
 matchRouter.get("/", getAllMatches);
+matchRouter.get("/number/:id", getAllMatches);
 matchRouter.put("/:id", updateAMatchById);
 matchRouter.delete("/:id", deleteAMatchById);
 
