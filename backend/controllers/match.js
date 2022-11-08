@@ -28,6 +28,8 @@ const createAMatch = (req, res) => {
 };
 
 const getMatchById = (req, res) => {
+  console.log("ada");
+  console.log("asdas");
   const id = req.params.id;
 
   const data = [id];
