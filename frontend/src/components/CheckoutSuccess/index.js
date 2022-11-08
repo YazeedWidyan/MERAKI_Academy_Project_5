@@ -20,11 +20,10 @@ const CheckoutSuccess = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch(setCart([]));
       })
       .catch((err) => {
-        console.log(err);
+        console.lg(err);
       });
   }, []);
 

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-console.log("yazeed");
 export const matchesSlice = createSlice({
   name: "matches",
   initialState: {

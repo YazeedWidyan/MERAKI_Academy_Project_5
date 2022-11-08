@@ -31,8 +31,6 @@ const ProductsList = () => {
         },
       });
       if (res.data.success) {
-        console.log(res.data.result);
-
         dispatch(setProducts(res.data.result));
         setMessage("");
         setShow(true);
@@ -44,7 +42,6 @@ const ProductsList = () => {
       setMessage("Error happened while Get Data, please try again");
     }
   };
-  console.log("aa");
 
   const showEdit = (product) => {
     setIsEdit(true);
@@ -52,11 +49,9 @@ const ProductsList = () => {
   };
 
   const deleteProduct = (id) => {
-    console.log(id);
     axios
       .delete(`http://localhost:5000/product/delete/${id}`)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(deleteFromProducts(id));
       })
       .catch((err) => {

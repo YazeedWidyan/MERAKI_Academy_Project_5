@@ -11,7 +11,6 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector(getToken);
-  console.log(token);
 
   const logout = () => {
     dispatch(setLogout(false));
@@ -24,7 +23,6 @@ const Header = () => {
   const goToCart = () => {
     navigate("/cart");
   };
-  console.log("yazeed");
   const goToHome = () => {
     navigate("/");
   };

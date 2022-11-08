@@ -28,9 +28,7 @@ const Cart = () => {
           },
         })
         .then((res) => {
-          console.log(res.data);
           dispatch(setCart(res.data.result));
-          console.log(res.data.result);
         })
         .catch((err) => {
           console.log(err);
@@ -45,7 +43,6 @@ const Cart = () => {
   };
 
   const deleteFromCart = (id) => {
-    console.log(id);
     axios
       .delete(`http://localhost:5000/cart/${id}`, {
         headers: {
@@ -53,7 +50,6 @@ const Cart = () => {
         },
       })
       .then((res) => {
-        console.log(res);
         dispatch(deleteItemFromCart(id));
       })
       .catch((err) => {

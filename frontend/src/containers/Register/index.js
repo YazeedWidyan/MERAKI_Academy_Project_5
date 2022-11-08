@@ -1,6 +1,5 @@
 import "./register.style.css";
 import axios from "axios";
-console.log("yazeed");
 import { useSelector } from "react-redux";
 import { getIsLoggedIn } from "../../redux/selectors/auth.selectors";
 import React, { useState } from "react";

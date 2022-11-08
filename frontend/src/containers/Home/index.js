@@ -23,7 +23,6 @@ const Home = () => {
     axios
       .get(`http://localhost:5000/product/catgory/1`)
       .then((data) => {
-        console.log(data);
         dispatch(setMenProducts(data.data.result));
       })
       .catch((err) => {
@@ -52,7 +51,6 @@ const Home = () => {
         console.log(err);
       });
   };
-  console.log("yazeed");
   useEffect(() => {
     getMenItems();
     getWomenItems();
@@ -69,7 +67,6 @@ const Home = () => {
     <div>
       <div className="categroy-container">
         {menProducts.map((product, i) => {
-          console.log(menProducts);
           return (
             <div
               key={i}
