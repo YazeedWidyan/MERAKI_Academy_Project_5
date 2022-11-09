@@ -9,6 +9,7 @@ import { deleteItemFromCart } from "../../redux/reducers/cart";
 import { getToken } from "../../redux/selectors/auth.selectors";
 import { getCart } from "../../redux/selectors/cart.selectors";
 import { setCart } from "../../redux/reducers/cart";
+
 import Carousel from "better-react-carousel";
 import {
   getMenProducts,
@@ -20,6 +21,8 @@ import {
   setWomenProducts,
   setKidsProducts,
 } from "../../redux/reducers/products";
+import { setWishlist } from "../../redux/reducers/wishlist";
+import { getWishlist } from "../../redux/selectors/wishlist.selectors";
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const menProducts = useSelector(getMenProducts);
@@ -27,6 +30,7 @@ const Home = () => {
   const kidsProducts = useSelector(getKidsProducts);
   const token = useSelector(getToken);
   const cart = useSelector(getCart);
+  const wishlist = useSelector(getWishlist);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -119,6 +123,21 @@ const Home = () => {
           console.log(err);
         });
     }
+
+    if (wishlist.length === 0) {
+      axios
+        .get("http://localhost:5000/wishlist", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          dispatch(setWishlist(res.data.result));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const goToDetails = (id) => {
@@ -191,40 +210,6 @@ const Home = () => {
                       </button>
                     )}
                   </div>
-
-                  {/*               {inCart ? (
-                <button
-                  className="btn"
-                  onClick={() => {
-                    deleteFromCart(product.id);
-                  }}
-                >
-                  {loading ? (
-                    <span className="btn-spinner"></span>
-                  ) : (
-                    <>
-                      <FaShoppingCart />
-                      remove to cart
-                    </>
-                  )}
-                </button>
-              ) : (
-                <button
-                  className="btn"
-                  onClick={() => {
-                    addToCart(product.id);
-                  }}
-                >
-                  {loading ? (
-                    <span className="btn-spinner"></span>
-                  ) : (
-                    <>
-                      <FaShoppingCart />
-                      add to cart
-                    </>
-                  )}
-                </button>
-              )} */}
                 </Carousel.Item>
               );
             })}
@@ -253,16 +238,35 @@ const Home = () => {
                       <div className="product-item-title">{product.title}</div>
                       <div className="product-item-price">${product.price}</div>
                     </div>
-                    <button className="product-item-btn">
-                      {loading ? (
-                        <span className="btn-spinner"></span>
-                      ) : (
-                        <>
-                          <FaShoppingCart />
-                          add to cart
-                        </>
-                      )}
-                    </button>
+                    {cart.find((item) => item.id === product.id) ? (
+                      <button
+                        className="product-item-btn"
+                        onClick={(e) => deleteFromCart(e, product.id)}
+                      >
+                        {loading ? (
+                          <span className="btn-spinner"></span>
+                        ) : (
+                          <>
+                            <FaShoppingCart />
+                            Remove From Cart
+                          </>
+                        )}
+                      </button>
+                    ) : (
+                      <button
+                        className="product-item-btn"
+                        onClick={(e) => addToCart(e, product.id, product)}
+                      >
+                        {loading ? (
+                          <span className="btn-spinner"></span>
+                        ) : (
+                          <>
+                            <FaShoppingCart />
+                            add to cart
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </Carousel.Item>
               );
@@ -297,16 +301,35 @@ const Home = () => {
                           ${product.price}
                         </div>
                       </div>
-                      <button className="product-item-btn">
-                        {loading ? (
-                          <span className="btn-spinner"></span>
-                        ) : (
-                          <>
-                            <FaShoppingCart />
-                            add to cart
-                          </>
-                        )}
-                      </button>
+                      {cart.find((item) => item.id === product.id) ? (
+                        <button
+                          className="product-item-btn"
+                          onClick={(e) => deleteFromCart(e, product.id)}
+                        >
+                          {loading ? (
+                            <span className="btn-spinner"></span>
+                          ) : (
+                            <>
+                              <FaShoppingCart />
+                              Remove From Cart
+                            </>
+                          )}
+                        </button>
+                      ) : (
+                        <button
+                          className="product-item-btn"
+                          onClick={(e) => addToCart(e, product.id, product)}
+                        >
+                          {loading ? (
+                            <span className="btn-spinner"></span>
+                          ) : (
+                            <>
+                              <FaShoppingCart />
+                              add to cart
+                            </>
+                          )}
+                        </button>
+                      )}
                     </div>
                   </Carousel.Item>
                 );
