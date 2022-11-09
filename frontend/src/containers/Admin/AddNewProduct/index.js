@@ -10,6 +10,7 @@ const AddNewProduct = () => {
   const [img, setimg] = useState("");
   const [ url, setUrl ] = useState("");
   const [price, setprice] = useState(0);
+  const [message, setmessage] = useState('')
   console.log(url);
   const addProduct = () => {
     axios
@@ -21,10 +22,12 @@ const AddNewProduct = () => {
         price,
       })
       .then((result) => {
-        console.log(result.data);
+        console.log(result.data.massage);
+        setmessage(result.data.massage)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
+        setmessage(err.message)
       });
   };
 
@@ -63,24 +66,24 @@ setUrl(data.url)
   // };
   return (
     <>
-      <div className="add">
+      <div className="add-new-product-contianer">
         <p>new product</p>
         <br />
-        <input
+        <input className="add-new-product-input"
           onChange={(e) => {
             settitle(e.target.value);
           }}
           type="text"
           placeholder="title"
         />
-        <textarea
+        <textarea className="add-new-product-textarea"
           onChange={(e) => {
             setdescriptions(e.target.value);
           }}
           type="text"
           placeholder="description"
         />
-        <input
+        <input className="add-new-product-input"
           onChange={(e) => {
             setcategory_id(e.target.value);
           }}
@@ -98,7 +101,7 @@ setUrl(data.url)
             setimg(e.target.files[0])
           }}
         />
-        <button onClick={uploadImage}>Upload</button>
+        <button className="add-new-product-button" onClick={uploadImage}>Upload</button>
         <input
           onChange={(e) => {
             setprice(e.target.value);
@@ -106,7 +109,7 @@ setUrl(data.url)
           type="number"
           placeholder="price"
         />
-        <button
+        <button className="add-new-product-button"
           onClick={() => {
             addProduct();
           
@@ -114,6 +117,7 @@ setUrl(data.url)
         >
           ADD
         </button>
+        <p>{message}</p>
       </div>
     </>
   );
