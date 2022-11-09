@@ -21,8 +21,23 @@ const MatchPage = () => {
         console.log(err);
       });
   }, []);
-
-  return <div>MatchPage</div>;
+  console.log("asd");
+  return (
+    <>
+      <div className="match-container">
+        <div className="team-1-container"></div>
+        <h3>Team 1</h3>
+        <div>
+          <img
+            key={match.team1postion1}
+            className="player-img"
+            src="./assets/images/7200_heroes.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default MatchPage;
