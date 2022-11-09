@@ -47,6 +47,52 @@ const login = (req, res) => {
         .json({ success: false, message: "The email doesn't exist", err });
     });
 };
+const googleLogin = (req, res) => {
+  const password = 123;
+  const email = req.body.email;
+  const values = [email.toLowerCase()];
+  const query = `SELECT * FROM users WHERE email = $1`;
+  pool
+    .query(query, values)
+    .then((result) => {
+      if (result.rows.length) {
+        bcrypt.compare(password, result.rows[0].password, (err, response) => {
+          if (err) res.json(err);
+          if (response) {
+            const payload = {
+              userId: result.rows[0].id,
+              country: result.rows[0].country,
+              role: result.rows[0].role_id,
+            };
+            const options = { expiresIn: "1d" };
+            const secret = process.env.SECRET;
+            const token = jwt.sign(payload, secret, options);
+            if (token) {
+              return res
+                .status(200)
+                .json({
+                  token,
+                  userId: result.rows[0].id,
+                  role: result.rows[0].role_id,
+                });
+            } else {
+              throw Error;
+            }
+          } else {
+            res.status(403).json({
+              success: false,
+              message: `The password you’ve entered is incorrect`,
+            });
+          }
+        });
+      } else throw Error;
+    })
+    .catch((err) => {
+      res
+        .status(404)
+        .json({ success: false, message: "The email doesn't exist", err });
+    });
+};
 const updateUserById = (req, res) => {
   const id = req.params.id;
   const { firstName, lastName, age, country } = req.body;
@@ -131,4 +177,4 @@ const getAllUsers = (req, res) => {
     });
 };
 
-module.exports = { login, updateUserById, deleteUserById, getAllUsers };
+module.exports = { login, updateUserById, deleteUserById, getAllUsers,googleLogin };
