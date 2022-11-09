@@ -10,7 +10,9 @@ const Register = () => {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repass, setrepass] = useState()
   const role_id = 1;
+  const [message, setmessage] = useState('')
   const state = useSelector(getIsLoggedIn);
   const addNewUser = () => {
     axios
@@ -24,10 +26,12 @@ const Register = () => {
         role_id,
       })
       .then((result) => {
-        console.log(result.data);
+        console.log(result.data.massage);
+        setmessage(result.data.massage)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
+        setmessage(err.message)
       });
   };
 
@@ -89,7 +93,11 @@ const Register = () => {
               className="auth-input"
               type="password"
               placeholder="Re-password"
+              onChange={(e)=>{
+                setrepass(e.target.value)
+              }}
             />
+            {password==repass?<p className="succes-msg">password matched</p>:<p className="error-msg">wrong password</p>}
             <button
               className="register-btn"
               onClick={() => {
@@ -98,6 +106,7 @@ const Register = () => {
             >
               Register
             </button>
+            <p>{message}</p>
           </>
         ) : (
           <>

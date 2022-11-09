@@ -33,6 +33,10 @@
 .login-text {
   margin-bottom: 17px;
 }
+.error-msg {
+  margin-top: 10px;
+  color: rgb(251, 0, 0);
+}
 
 @media (min-width: 268px) and (max-width: 767px) {
   .login-container {

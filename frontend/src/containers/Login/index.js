@@ -40,6 +40,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setmessage] = useState('')
   const login = () => {
     axios
       .post("http://localhost:5000/login", {
@@ -57,7 +58,8 @@ const Login = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.message);
+        setmessage(err.response.data.message)
       });
   };
   return (
@@ -93,6 +95,7 @@ const Login = () => {
             onFailure={onFailure}
           />
         </div>
+        <p className="error-msg ">{message}</p>
       </div>
     </>
   );
