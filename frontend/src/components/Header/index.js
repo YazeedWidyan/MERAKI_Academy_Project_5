@@ -34,6 +34,9 @@ const Header = () => {
   const goToHome = () => {
     navigate("/");
   };
+  const goToStore = () => {
+    navigate("/store");
+  };
   const goToMatch = () => {
     navigate("/matches");
   };
@@ -85,7 +88,9 @@ const Header = () => {
               <div onClick={goToHome} className="navigation-btn">
                 Home
               </div>
-              <div className="navigation-btn">Shop</div>
+              <div onClick={goToStore} className="navigation-btn">
+                Store
+              </div>
               <div className="navigation-btn" onClick={goToMatch}>
                 Match
               </div>
