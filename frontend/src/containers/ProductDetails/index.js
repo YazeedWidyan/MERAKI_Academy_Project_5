@@ -27,6 +27,9 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
+  const [inStock, setInStock] = useState(0);
+  console.log(inStock);
+  console.log(product);
 
   const [inWishlist, setInWishlist] = useState(false);
   const [inCart, setInCart] = useState(false);
@@ -41,6 +44,7 @@ const ProductDetails = () => {
       .get(`http://localhost:5000/product/${location.state}`)
       .then((res) => {
         setProduct(res.data.product.rows[0]);
+        setInStock(res.data.product.rows[0].in_stock);
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +143,7 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div>
+      <div className="product-deatils-container">
         <div className="title-header">
           <div className="inner-container">
             <div className="current-name">{product.title}</div>
@@ -151,24 +155,28 @@ const ProductDetails = () => {
           </div>
           <div className="card">
             <div className="title-product">{product.title}</div>
-            <div className="product-price">{product.price}</div>
+            <div className="product-price">{product.price}JD</div>
             <div>
               <div className="specs-wrapper">
                 <div className="specs-name">Brand:</div>
-                <div className="specs-name">Apple</div>
+                <div className="specs-name">Adidas</div>
               </div>
               <div className="specs-wrapper">
                 <div className="specs-name">Availability:</div>
-                <div className="specs-name">In Stock</div>
+                {inStock ? (
+                  <div className="specs-name">Out of Stock</div>
+                ) : (
+                  <div className="specs-name">In Stock</div>
+                )}
               </div>
             </div>
             <div className="product-description">
-              <span className="description-title">overview</span>
+              <span className="description-title">Overview</span>
               <br />
               {product.descriptions}
             </div>
             <div className="action-wrapper">
-              <div className="quantity-select">
+              {/* <div className="quantity-select">
                 <div className="quantity-action" onClick={decreament}>
                   <FaMinus />
                 </div>
@@ -176,7 +184,7 @@ const ProductDetails = () => {
                 <div className="quantity-action" onClick={increament}>
                   <FaPlus />
                 </div>
-              </div>
+              </div> */}
               {inCart ? (
                 <button
                   className="btn"
@@ -189,7 +197,7 @@ const ProductDetails = () => {
                   ) : (
                     <>
                       <FaShoppingCart />
-                      remove to cart
+                      Remove to cart
                     </>
                   )}
                 </button>
