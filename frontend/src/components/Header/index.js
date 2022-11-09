@@ -6,14 +6,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getToken } from "../../redux/selectors/auth.selectors";
 import { useNavigate, Link } from "react-router-dom";
 import Search from "../Search";
+import { getCart } from "../../redux/selectors/cart.selectors";
+import { setCart } from "../../redux/reducers/cart";
+import { getWishlist } from "../../redux/selectors/wishlist.selectors";
+import { setWishlist } from "../../redux/reducers/wishlist";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const token = useSelector(getToken);
+  const cart = useSelector(getCart);
+  const wishList = useSelector(getWishlist);
 
   const logout = () => {
     dispatch(setLogout(false));
+    dispatch(setCart([]));
+    dispatch(setWishlist([]));
     navigate("/login");
   };
 
@@ -63,14 +71,14 @@ const Header = () => {
           <div onClick={goToWishlist} className="text-btn">
             <FaHeart />
             <span>Wishlist</span>
-            <span>(0)</span>
+            <span>{wishList.length}</span>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="bottom-header-wrapper">
           <div>
-            <img src="https://opencart.opencartworks.com/themes/so_sport/image/catalog/demo/logo/logo.png" />
+            <img className="header-logo-img" src="./assets/images/logo.png" />
           </div>
           <div className="bottom-header-right-wrapper">
             <div className="navigation-wrapper">
@@ -88,7 +96,7 @@ const Header = () => {
                 <FaSearch size={18} />
               </div>
               <div className="text-btn" onClick={goToCart}>
-                <span className="cart-count-indicator">{0}</span>
+                <span className="cart-count-indicator">{cart.length}</span>
                 <FaShoppingBasket size={22} />
               </div>
             </div>

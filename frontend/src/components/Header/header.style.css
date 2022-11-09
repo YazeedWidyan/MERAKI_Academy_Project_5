@@ -7,6 +7,11 @@
   z-index: 999;
   background: dodgerblue;
 }
+.header-logo-img {
+  background-color: #0047ab;
+  width: 200px;
+  border-radius: 5px;
+}
 
 .overlay__inner {
   left: 0;
