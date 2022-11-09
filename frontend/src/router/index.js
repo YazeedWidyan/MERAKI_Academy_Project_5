@@ -38,9 +38,8 @@ const Router = () => {
         </Route>
         <Route path="productdetails" element={<ProductDetails />} />
         <Route path="cart" element={<Cart />} />
-        <Route path="matches" element={<Matches />}>
-          <Route path="matchpage" element={<MatchPage />} />
-        </Route>
+        <Route path="matches" element={<Matches />} />
+        <Route path="matchpage" element={<MatchPage />} />
         <Route path="checkout" element={<Checkout />} />
         <Route path="checkout-success" element={<CheckoutSuccess />} />
         <Route path="contactUs" element={<ContactUs />} />
@@ -58,5 +57,7 @@ const Router = () => {
     </>
   );
 };
+
+console.log("adasd");
 
 export default Router;
