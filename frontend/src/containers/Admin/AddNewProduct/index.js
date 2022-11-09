@@ -10,6 +10,7 @@ const AddNewProduct = () => {
   const [img, setimg] = useState("");
   const [ url, setUrl ] = useState("");
   const [price, setprice] = useState(0);
+  const [message, setmessage] = useState('')
   console.log(url);
   const addProduct = () => {
     axios
@@ -21,10 +22,12 @@ const AddNewProduct = () => {
         price,
       })
       .then((result) => {
-        console.log(result.data);
+        console.log(result.data.massage);
+        setmessage(result.data.massage)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
+        setmessage(err.message)
       });
   };
 
@@ -114,6 +117,7 @@ setUrl(data.url)
         >
           ADD
         </button>
+        <p>{message}</p>
       </div>
     </>
   );
