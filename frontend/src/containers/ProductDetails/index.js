@@ -78,10 +78,10 @@ const ProductDetails = () => {
       });
   };
 
-  const addToCart = () => {
+  const addToCart = (id) => {
     if (!token) return navigate("/login");
     const data = {
-      product_id: product.id,
+      product_id: id,
     };
 
     axios
