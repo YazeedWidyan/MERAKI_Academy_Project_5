@@ -1,0 +1,26 @@
+.categories-container{
+    display: flex;
+    justify-content: space-evenly;
+    /* flex-direction: column; */
+}
+.categories{
+    display: flex;
+    margin:5%;
+}
+.categories-button{
+    width: 6em;
+    
+}
+.products-container{
+    text-align: -webkit-center;
+    display: grid;
+    column-gap: 2em;
+    grid-template-columns: 33% 33% 33%;
+    padding-left: 3em;
+    padding-right: 5em;
+}
+.products{
+    background: aquamarine;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
