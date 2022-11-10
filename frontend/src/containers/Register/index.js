@@ -10,7 +10,7 @@ const Register = () => {
   const [country, setCountry] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repass, setrepass] = useState()
+  const [repass, setrepass] = useState('')
   const role_id = 1;
   const [message, setmessage] = useState('')
   const state = useSelector(getIsLoggedIn);
@@ -96,8 +96,8 @@ const Register = () => {
               onChange={(e)=>{
                 setrepass(e.target.value)
               }}
-            />
-            {password==repass?<p className="succes-msg">password matched</p>:<p className="error-msg">wrong password</p>}
+            />{password==""&&repass==""?<p></p>:<div> {password==repass?<p className="succes-msg">password matched</p>:<p className="error-msg">wrong password</p>}</div>}
+           
             <button
               className="register-btn"
               onClick={() => {
