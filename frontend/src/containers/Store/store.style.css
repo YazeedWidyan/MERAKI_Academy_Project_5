@@ -98,13 +98,3 @@ width: max-content;
   cursor: pointer;
 }
 } 
-/* @media  (min-width:900px) {
-    .products-container {
-        text-align: -webkit-center;
-  display: grid;
-  column-gap: 2em;
-  grid-template-columns: 33% 33%;
-  padding-left: 3em;
-  padding-right: 5em;
-      }
-}  */
