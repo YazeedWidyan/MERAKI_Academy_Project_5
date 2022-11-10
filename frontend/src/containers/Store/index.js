@@ -60,14 +60,14 @@ const Store = () => {
         {products.map((product, i) => {
           return (
             <div className="products">
-              <h2>{product.title}</h2>
+              <h2 className="title">{product.title}</h2>
               <img
                 className="product-img-store"
                 src={product.img}
                 alt={product.title}
               />
-              <h5>{product.descriptions}</h5>
-              <h5>{product.price}</h5>
+              <h5 className="desc">{product.descriptions}</h5>
+              <h5 className="price">{product.price}</h5>
             </div>
           );
         })}
