@@ -109,7 +109,8 @@ const Home = () => {
     getWomenItems();
     getKidsItems();
 
-    if (cart.length === 0) {
+    if (token && cart.length === 0) {
+      console.log("yazeed ssssssssss");
       axios
         .get("http://localhost:5000/cart", {
           headers: {
@@ -117,6 +118,7 @@ const Home = () => {
           },
         })
         .then((res) => {
+          console.log("ssss");
           dispatch(setCart(res.data.result));
         })
         .catch((err) => {
@@ -124,7 +126,8 @@ const Home = () => {
         });
     }
 
-    if (wishlist.length === 0) {
+    if (token && wishlist.length === 0) {
+      console.log("yazeed fffffffffff");
       axios
         .get("http://localhost:5000/wishlist", {
           headers: {
@@ -132,6 +135,7 @@ const Home = () => {
           },
         })
         .then((res) => {
+          console.log("mmmmmmmmm");
           dispatch(setWishlist(res.data.result));
         })
         .catch((err) => {

@@ -7,12 +7,13 @@ import { setLogin, setUserId, setUserType } from "../../redux/reducers/auth";
 import { getIsLoggedIn } from "../../redux/selectors/auth.selectors";
 import { GoogleLogin } from "react-google-login";
 import { gapi } from "gapi-script";
+import { setCart } from "../../redux/reducers/cart";
+import { setWishlist } from "../../redux/reducers/wishlist";
 const Login = () => {
   const clientId =
     "646674207004-f5s33oa3mbvsq5rnhthd67bnmjj439pg.apps.googleusercontent.com";
 
   useEffect(() => {
-   
     function start() {
       gapi.client.init({
         clientId: clientId,
@@ -26,24 +27,50 @@ const Login = () => {
     // setFirstName(response.wt.rV)
     // setLastName(response.wt.uT)
     // setEmailgoogle(response.wt.cu)
-   // console.log(response.tokenId);
- 
+    // console.log(response.tokenId);
+
     axios
       .post("http://localhost:5000/user/google", {
-        firstName:response.wt.rV,
-        lastName:response.wt.uT,
-        email:response.wt.cu,
-    
+        firstName: response.wt.rV,
+        lastName: response.wt.uT,
+        email: response.wt.cu,
       })
       .then((result) => {
         console.log(result);
         dispatch(setLogin(result.data.token));
-    dispatch(setUserId(result.data.userId));
-    dispatch(setUserType(1));
+        dispatch(setUserId(result.data.userId));
+        dispatch(setUserType(1));
+
+        axios
+          .get("http://localhost:5000/cart", {
+            headers: {
+              Authorization: `Bearer ${result.data.token}`,
+            },
+          })
+          .then((res) => {
+            console.log("ssss");
+            dispatch(setCart(res.data.result));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        axios
+          .get("http://localhost:5000/wishlist", {
+            headers: {
+              Authorization: `Bearer ${result.data.token}`,
+            },
+          })
+          .then((res) => {
+            console.log("mmmmmmmmm");
+            dispatch(setWishlist(res.data.result));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err.message);
-
       });
 
     navigate("/");
@@ -60,7 +87,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setmessage] = useState('')
+  const [message, setmessage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [emailgoogle, setEmailgoogle] = useState("");
@@ -70,16 +97,13 @@ const Login = () => {
       .post("http://localhost:5000/user/google", {
         firstName,
         lastName,
-        email:emailgoogle,
-    
+        email: emailgoogle,
       })
       .then((result) => {
         console.log(result.data.massage);
-     
       })
       .catch((err) => {
         console.log(err.message);
-
       });
   };
   const login = () => {
@@ -92,6 +116,35 @@ const Login = () => {
         dispatch(setLogin(result.data.token));
         dispatch(setUserId(result.data.userId));
         dispatch(setUserType(result.data.role));
+
+        axios
+          .get("http://localhost:5000/cart", {
+            headers: {
+              Authorization: `Bearer ${result.data.token}`,
+            },
+          })
+          .then((res) => {
+            console.log("ssss");
+            dispatch(setCart(res.data.result));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        axios
+          .get("http://localhost:5000/wishlist", {
+            headers: {
+              Authorization: `Bearer ${result.data.token}`,
+            },
+          })
+          .then((res) => {
+            console.log("mmmmmmmmm");
+            dispatch(setWishlist(res.data.result));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
         if (result.data.role == 1) {
           navigate("/");
         } else if (result.data.role == 2) {
@@ -100,14 +153,14 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.response.data.message);
-        setmessage(err.response.data.message)
+        setmessage(err.response.data.message);
       });
   };
   const googlelogin = () => {
     axios
       .post("http://localhost:5000/login/google", {
-        email:emailgoogle,
-        password:123,
+        email: emailgoogle,
+        password: 123,
       })
       .then((result) => {
         dispatch(setLogin(result.data.token));
@@ -121,7 +174,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err.response.data.message);
-        setmessage(err.response.data.message)
+        setmessage(err.response.data.message);
       });
   };
   return (
@@ -146,7 +199,6 @@ const Login = () => {
           className="login-btn"
           onClick={() => {
             login();
-           
           }}
         >
           Login
@@ -154,12 +206,9 @@ const Login = () => {
         <div>
           <GoogleLogin
             clientId={clientId}
-            onSuccess={onSuccess }
+            onSuccess={onSuccess}
             onFailure={onFailure}
-          
           />
-         
-          
         </div>
         <p className="error-msg ">{message}</p>
       </div>
