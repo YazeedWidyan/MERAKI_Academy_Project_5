@@ -10,6 +10,8 @@ const MatchPage = () => {
 
   const location = useLocation();
 
+
+     
   useEffect(() => {
     axios
       .get(`http://localhost:5000/match/number/${location.state}`)
