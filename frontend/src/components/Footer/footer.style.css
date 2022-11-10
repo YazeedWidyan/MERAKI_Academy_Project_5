@@ -8,6 +8,8 @@
     display:grid;
     grid-template-columns: repeat(3, 30%);
     justify-content: space-evenly;
+    background-color: #0047ab;
+    color: white;
 }
 .f-logo{
 
@@ -22,11 +24,36 @@
 .f-social-icons-container{
     display: grid;
     grid-template-columns: repeat(4, 25%);
-   
+    background-color: white;
+    padding: 0.1em;
+    margin-bottom: 1em;
+}
+.link-to-contact{
+    color: white;
 }
 /* .social-networks-icons{
     display: flex;
 } */
 .f-soical-network-icons{
     margin-right: 5px;
+    color: white impr !important;
+}
+
+@media  (max-width: 600px) {
+    .upper-footer{
+        display:grid;
+        grid-template-columns: repeat(1, 30%);
+        justify-content: space-evenly;
+        background-color: #0047ab;
+        color: white;
+    }
+} 
+@media  (min-width: 600px) and (max-width:900px) {
+    .upper-footer{
+        display:grid;
+        grid-template-columns: repeat(2, 30%);
+        justify-content: space-evenly;
+        background-color: #0047ab;
+        color: white;
+    }
 }
