@@ -28,36 +28,49 @@ const Store = () => {
   };
   useEffect(() => {
     getCategories();
+
+    axios
+      .get(`http://localhost:5000/product/catgory/1`)
+      .then((data) => {
+        setProducts(data.data.result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
     <div className="container">
       <div className="categories-container">
-      {categories.map((categories, i) => {
-        return (
-          <div  key={i}>
-            {console.log(categories)}
-            <button
-              className="categories-button"
-              onClick={() => getProductsByCategory(categories.id)}
-            >
-              {categories.category}
-            </button>
-          </div>
-        );
-      })}
+        {categories.map((categories, i) => {
+          return (
+            <div key={i}>
+              {console.log(categories)}
+              <button
+                className="categories-button"
+                onClick={() => getProductsByCategory(categories.id)}
+              >
+                {categories.category}
+              </button>
+            </div>
+          );
+        })}
       </div>
       <div className="products-container">
-      {products.map((product, i) => {
-        return (
-          <div className="products">
-            <h2>{product.title}</h2>
-            <h5>{product.img}</h5>
-            <h5>{product.descriptions}</h5>
-            <h5>{product.price}</h5>
-          </div>
-        );
-      })}
+        {products.map((product, i) => {
+          return (
+            <div className="products">
+              <h2>{product.title}</h2>
+              <img
+                className="product-img-store"
+                src={product.img}
+                alt={product.title}
+              />
+              <h5>{product.descriptions}</h5>
+              <h5>{product.price}</h5>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
