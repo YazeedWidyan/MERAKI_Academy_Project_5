@@ -10,14 +10,27 @@
   margin: 5%;
 }
 .categories-button {
-  width: 7em;
-  height: 2em;
-  font-size: 14px;
-  background-color: #0047ab;
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 15px 0 15px;
   border: none;
-  color: white;
-  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 33px;
+  overflow: hidden;
+  background-color: #9a9a9a;
+  height: 33px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  margin-right: 2px;
+  min-width: 135px;
   cursor: pointer;
+}
+.categories-button:hover{
+  background-color: orangered;
 }
 .products-container {
    
@@ -40,18 +53,27 @@
   height: 250px;
   border-radius: 5px;
 }
-.title{
-justify-self: center;
-font-size: larger;
-width: max-content;
+.product-item-title {
+  font-size: 14px;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.667);
+  font-weight: 500;
+  text-align: center;
 }
 .desc{
     justify-self: center;
     width: max-content;
+    font-size: 12px;
+    text-transform: capitalize;
+    color: rgba(0, 0, 0, 0.667);
+    font-weight: 400;
+    text-align: center;
 }
-.price{
-    justify-self: center;
-    width: max-content;
+.product-item-price {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 22px;
 }
 
 
@@ -67,14 +89,24 @@ width: max-content;
 
       }
       .categories-button {
-        width: 5em;
-        height: 1.7em;
-  font-size: 14px;
-  background-color: #0047ab;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+        display: flex;
+        gap: 7px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 15px 0 15px;
+        border: none;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 33px;
+        overflow: hidden;
+        background-color: #9a9a9a;
+        height: 33px;
+        border-radius: 14px;
+        text-transform: uppercase;
+        margin-right: 2px;
+        min-width: 85px;
+        cursor: pointer;
 }
 } 
 @media  (min-width: 600px) and (max-width:900px) {
@@ -88,13 +120,23 @@ width: max-content;
   justify-content: center;
       }
       .categories-button {
-        width: 6em;
-        height: 1.8em;
-  font-size: 14px;
-  background-color: #0047ab;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+        display: flex;
+        gap: 7px;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 15px 0 15px;
+        border: none;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 33px;
+        overflow: hidden;
+        background-color: #9a9a9a;
+        height: 33px;
+        border-radius: 14px;
+        text-transform: uppercase;
+        margin-right: 2px;
+        min-width: 100px;
+        cursor: pointer;
 }
 } 
