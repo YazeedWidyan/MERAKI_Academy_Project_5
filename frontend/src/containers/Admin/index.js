@@ -44,7 +44,7 @@ const Admin = () => {
               setShow(!show);
             }}
           >
-            black{" "}
+            menu{" "}
           </i>
         </div>
         <nav
