@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { useState,useEffect } from "react";
 import { FaShoppingBasket, FaHeart, FaSearch } from "react-icons/fa";
 import "./header.style.css";
 import { setLogout } from "../../redux/reducers/auth";
@@ -17,14 +19,33 @@ const Header = () => {
   const token = useSelector(getToken);
   const cart = useSelector(getCart);
   const wishList = useSelector(getWishlist);
-
+  const [place, setPlace] = useState('')
+  const [time, setTime] = useState('')
+const [temp, settemp] = useState('')
   const logout = () => {
     dispatch(setLogout(false));
     dispatch(setCart([]));
     dispatch(setWishlist([]));
     navigate("/login");
   };
+  const clock = () => {
+    axios
+      .get("http://api.weatherstack.com/current?access_key=4a61273807556cf152cdd7018185baed&query=Amman")
+      .then((response) => {
+        console.log(response.data.current.temperature
+          );
+        setPlace(response.data.location.name);
+        setTime(response.data.location.localtime);
+        settemp(response.data.current.temperature)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
+  useEffect(() => {
+    clock();
+  }, []);
   const goToWishlist = () => {
     navigate("/wishlist");
   };
@@ -55,6 +76,13 @@ const Header = () => {
           <div>Hotline : +123 456 7890</div>
           <div>|</div>
           <div>Welcome to Blue Lock</div>
+          <div>
+            
+            {place}
+            <br></br>
+          {time}
+          <br></br>
+          temp is:{temp}'</div>
         </div>
         <div className="top-header-section">
           {token ? (
