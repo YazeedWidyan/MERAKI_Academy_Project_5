@@ -14,7 +14,6 @@ const Footer = () => {
 
         <div className="f-contact-us">
           <h2 className="footer-title">Contact Us</h2>
-          <p className="paragraphs-infos">Your address or contact info goes here</p>
           <p className="paragraphs-infos">Mail : costumer_service@bl.com</p>
           <p className="paragraphs-infos">Phone : 012 3456 789</p>
           <a className="link-to-contact" href={"http://localhost:3000/contactUs"}>
