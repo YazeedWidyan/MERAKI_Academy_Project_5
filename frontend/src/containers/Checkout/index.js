@@ -26,9 +26,10 @@ const Checkout = () => {
     handleCheckout();
   }, []);
 
+  console.log("yaz");
   return (
     <>
-      <div></div>;
+      <div className="checkout"></div>;
     </>
   );
 };
