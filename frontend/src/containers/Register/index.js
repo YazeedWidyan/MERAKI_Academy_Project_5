@@ -26,7 +26,7 @@ const Register = () => {
         role_id,
       })
       .then((result) => {
-        console.log(result.data.massage);
+        console.log(result.data);
         setmessage(result.data.massage)
       })
       .catch((err) => {
