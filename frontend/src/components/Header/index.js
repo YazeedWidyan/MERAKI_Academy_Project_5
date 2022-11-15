@@ -59,6 +59,7 @@ const Header = () => {
   const goToStore = () => {
     navigate("/store");
   };
+
   // const goToMatch = () => {
   //   navigate("/matches");
   // };
@@ -77,13 +78,13 @@ const Header = () => {
           <div>Hotline : +123 456 7890</div>
           <div>|</div>
           <div>Welcome to Blue Lock</div>
-          <div>
+          {/* <div>
             {place}
             <br></br>
             {time}
             <br></br>
             temp is:{temp}'
-          </div>
+          </div> */}
         </div>
         <div className="top-header-section">
           {token ? (
