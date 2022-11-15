@@ -28,9 +28,6 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState({});
   const [inStock, setInStock] = useState(0);
-  console.log(inStock);
-  console.log(product);
-
   const [inWishlist, setInWishlist] = useState(false);
   const [inCart, setInCart] = useState(false);
   const token = useSelector(getToken);
