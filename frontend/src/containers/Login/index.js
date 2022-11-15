@@ -138,7 +138,6 @@ const Login = () => {
             },
           })
           .then((res) => {
-            console.log("mmmmmmmmm");
             dispatch(setWishlist(res.data.result));
           })
           .catch((err) => {
@@ -203,6 +202,7 @@ const Login = () => {
         >
           Login
         </button>
+
         <div>
           <GoogleLogin
             clientId={clientId}
