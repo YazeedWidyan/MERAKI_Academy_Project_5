@@ -74,6 +74,13 @@ const AddNewProduct = () => {
           type="number"
           placeholder="catagory"
         />
+            <input className="add-new-product-input"
+          onChange={(e) => {
+            setprice(e.target.value);
+          }}
+          type="number"
+          placeholder="price"
+        />
         <label>Img:</label>
         <br />
         <input
@@ -88,13 +95,7 @@ const AddNewProduct = () => {
         <button className="add-new-product-button" onClick={uploadImage}>
           Upload
         </button>
-        <input
-          onChange={(e) => {
-            setprice(e.target.value);
-          }}
-          type="number"
-          placeholder="price"
-        />
+    
         <button
           className="add-new-product-button"
           onClick={() => {
