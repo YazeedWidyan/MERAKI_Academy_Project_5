@@ -50,7 +50,7 @@ const AddNewProduct = () => {
   return (
     <>
       <div className="add-new-product-contianer">
-        <p>new product</p>
+        <p className="add-new-product-title"> Add new product </p>
         <br />
         <input
           className="add-new-product-input"
@@ -60,8 +60,9 @@ const AddNewProduct = () => {
           type="text"
           placeholder="title"
         />
-        <textarea
-          className="add-new-product-textarea"
+        <input
+           
+          className="add-new-product-input"
           onChange={(e) => {
             setdescriptions(e.target.value);
           }}
