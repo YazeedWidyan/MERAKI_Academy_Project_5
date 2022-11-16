@@ -44,12 +44,13 @@
   background: rgb(255, 255, 255);
   margin-bottom: 1em;
   margin-top: 1em;
+  height: 60%;
 }
 
 .product-img-store {
-  width: 220px;
-  height: 250px;
-  border-radius: 5px;
+  width: 90%;
+  height: 80%;
+  border-radius: 0.4em;
 }
 .product-item-title {
   font-size: 14px;
@@ -61,17 +62,26 @@
 .desc {
   justify-self: center;
   width: max-content;
-  font-size: 12px;
+  font-size: 0.9em;
   text-transform: capitalize;
   color: rgba(0, 0, 0, 0.667);
   font-weight: 400;
   text-align: center;
+  inline-size: fit-content;
+  overflow-wrap: break-word;
 }
 .product-item-price {
   text-align: center;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 22px;
+}
+
+.products-border {
+  box-shadow: 3px 3px 2px 0 rgb(0 0 0 / 20%);
+  border-radius: 0.3em;
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 @media (max-width: 600px) {
