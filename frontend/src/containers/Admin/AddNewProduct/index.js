@@ -11,6 +11,7 @@ const AddNewProduct = () => {
   const [url, setUrl] = useState("");
   const [price, setprice] = useState(0);
   const [message, setmessage] = useState("");
+  const [show, setshow] = useState(false);
   const addProduct = () => {
     axios
       .post(`http://localhost:5000/product/add`, {
@@ -40,6 +41,7 @@ const AddNewProduct = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
@@ -48,7 +50,7 @@ const AddNewProduct = () => {
   return (
     <>
       <div className="add-new-product-contianer">
-        <p>new product</p>
+        <p className="add-new-product-title"> Add new product </p>
         <br />
         <input
           className="add-new-product-input"
@@ -58,8 +60,9 @@ const AddNewProduct = () => {
           type="text"
           placeholder="title"
         />
-        <textarea
-          className="add-new-product-textarea"
+        <input
+           
+          className="add-new-product-input"
           onChange={(e) => {
             setdescriptions(e.target.value);
           }}
@@ -74,6 +77,13 @@ const AddNewProduct = () => {
           type="number"
           placeholder="catagory"
         />
+            <input className="add-new-product-input"
+          onChange={(e) => {
+            setprice(e.target.value);
+          }}
+          type="number"
+          placeholder="price"
+        />
         <label>Img:</label>
         <br />
         <input
@@ -85,16 +95,16 @@ const AddNewProduct = () => {
             setimg(e.target.files[0]);
           }}
         />
-        <button className="add-new-product-button" onClick={uploadImage}>
+
+        {show&& <img className="img" src={url} />}
+       
+        <button className="add-new-product-button" onClick={()=>{
+          uploadImage()
+          setshow(true)
+        }}>
           Upload
         </button>
-        <input
-          onChange={(e) => {
-            setprice(e.target.value);
-          }}
-          type="number"
-          placeholder="price"
-        />
+    
         <button
           className="add-new-product-button"
           onClick={() => {
