@@ -29,3 +29,8 @@
   cursor: pointer;
   color: rgb(241, 24, 24);
 }
+
+.img{
+  width: 200px;
+  height: 200px;
+}

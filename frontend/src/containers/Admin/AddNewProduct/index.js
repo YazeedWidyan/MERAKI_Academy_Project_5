@@ -11,6 +11,7 @@ const AddNewProduct = () => {
   const [url, setUrl] = useState("");
   const [price, setprice] = useState(0);
   const [message, setmessage] = useState("");
+  const [show, setshow] = useState(false);
   const addProduct = () => {
     axios
       .post(`http://localhost:5000/product/add`, {
@@ -40,6 +41,7 @@ const AddNewProduct = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        console.log(data);
         setUrl(data.url);
       })
       .catch((err) => console.log(err));
@@ -92,7 +94,13 @@ const AddNewProduct = () => {
             setimg(e.target.files[0]);
           }}
         />
-        <button className="add-new-product-button" onClick={uploadImage}>
+
+        {show&& <img className="img" src={url} />}
+       
+        <button className="add-new-product-button" onClick={()=>{
+          uploadImage()
+          setshow(true)
+        }}>
           Upload
         </button>
     
