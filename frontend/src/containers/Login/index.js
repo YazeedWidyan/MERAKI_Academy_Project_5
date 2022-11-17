@@ -62,7 +62,7 @@ const Login = () => {
             },
           })
           .then((res) => {
-            console.log("mmmmmmmmm");
+            
             dispatch(setWishlist(res.data.result));
           })
           .catch((err) => {
@@ -179,18 +179,18 @@ const Login = () => {
   return (
     <>
       <div className="login-container">
-        <p>login</p>
+        <p>Login</p>
         <input
           className="auth-input"
           type="email"
-          placeholder="Email"
+          placeholder="EMAIL"
           onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
           className="auth-input"
           type="password"
-          placeholder="Password"
+          placeholder="PASSWORD"
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
