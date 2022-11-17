@@ -20,6 +20,7 @@ const Register = () => {
   const role_id = 1;
   const [message, setmessage] = useState("");
   const state = useSelector(getIsLoggedIn);
+  const [pass, setPass] = useState(false)
   const addNewUser = () => {
     axios
       .post("http://localhost:5000/user", {
@@ -105,7 +106,7 @@ const getToken=()=>{
                 setFirstName(e.target.value);
               }}
               type="text"
-              placeholder="firstName"
+              placeholder="FIRST NAME"
             />
             <input
               className="auth-input"
@@ -113,7 +114,7 @@ const getToken=()=>{
                 setLastName(e.target.value);
               }}
               type="text"
-              placeholder="lastName"
+              placeholder="LAST NAME"
             />
             <input
               className="auth-input"
@@ -121,7 +122,7 @@ const getToken=()=>{
                 setAge(e.target.value);
               }}
               type="number"
-              placeholder="age"
+              placeholder="AGE"
             />
             <input
               className="auth-input"
@@ -129,7 +130,7 @@ const getToken=()=>{
                 setCountry(e.target.value);
               }}
               type="text"
-              placeholder="country"
+              placeholder="COUNTRY"
             />
             <input
               className="auth-input"
@@ -137,7 +138,7 @@ const getToken=()=>{
                 setEmail(e.target.value);
               }}
               type="email"
-              placeholder="email"
+              placeholder="EMAIL"
             />
             <input
               className="auth-input"
@@ -145,25 +146,27 @@ const getToken=()=>{
                 setPassword(e.target.value);
               }}
               type="password"
-              placeholder="password"
+              placeholder="PASSWORD"
             />
             <input
               className="auth-input"
               type="password"
-              placeholder="Re-password"
+              placeholder="RE-PASSWORD"
               onChange={(e) => {
                 setrepass(e.target.value);
+                setPass(true)
+            
+          
               }}
             />
-            {password == "" && repass == "" ? (
+            {!pass&&password == "" && repass == "" ? (
               <p></p>
-            ) : (
+            ) : (pass&&
               <div>
-                {" "}
                 {password == repass ? (
-                  <p className="succes-msg">password matched</p>
+                  <p className="succes-msg">PASSWORD MATCHED</p>
                 ) : (
-                  <p className="error-msg">wrong password</p>
+                  <p className="error-msg">WRONG PASSWORD</p>
                 )}
               </div>
             )}
