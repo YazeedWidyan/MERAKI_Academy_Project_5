@@ -151,10 +151,10 @@ const getToken=()=>{
             <input
               className="auth-input"
               type="password"
-              placeholder="RE-PASSWORD"
+              placeholder="CONFIRM-PASSWORD"
               onChange={(e) => {
                 setrepass(e.target.value);
-                setPass(true)
+               
             
           
               }}
@@ -175,7 +175,7 @@ const getToken=()=>{
               className="register-btn"
               onClick={() => {
                 addNewUser();
-                
+                setPass(true)
               }}
             >
               Register
