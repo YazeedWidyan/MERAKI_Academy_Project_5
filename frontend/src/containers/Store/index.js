@@ -61,7 +61,7 @@ const Store = () => {
           return (
             <div className="products-border">
               <div className="products">
-                <img className="product-img-store" />
+                <img className="product-img-store" src={product.img}></img> 
                 <h5 className="desc">{product.descriptions}</h5>
                 <h5 className="product-item-price">{product.price}$</h5>
               </div>
