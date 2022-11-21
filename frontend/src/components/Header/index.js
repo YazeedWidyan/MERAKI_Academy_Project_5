@@ -19,6 +19,7 @@ const Header = () => {
   const token = useSelector(getToken);
   const cart = useSelector(getCart);
   const wishList = useSelector(getWishlist);
+  const [dark, setdark] = useState(false)
   // const [place, setPlace] = useState("");
   // const [time, setTime] = useState("");
   // const [temp, settemp] = useState("");
@@ -32,8 +33,10 @@ const Header = () => {
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
+      setdark(true)
     } else {
       setTheme('light');
+      setdark(false)
     }
   }
   
@@ -91,7 +94,9 @@ const Header = () => {
           <div>|</div>
           <div>Welcome to Blue Lock</div>
           <div className={`App ${theme}`}>
-      <div onClick={toggleTheme}><img id="ig" src="https://cdn1.iconfinder.com/data/icons/user-interface-16x16-vol-1/16/contrast-circle-512.png" alt="dark-light-mode"/></div>
+      <div onClick={toggleTheme}>{dark? <img src="https://img.icons8.com/color/30/000000/summer--v1.png"/>:<img src="https://img.icons8.com/ios-glyphs/30/000000/moon-symbol.png"/>}
+       
+        </div>
    
     </div>
           {/* <div>
