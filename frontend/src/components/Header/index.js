@@ -28,6 +28,18 @@ const Header = () => {
     dispatch(setWishlist([]));
     navigate("/login");
   };
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
+  
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
   // const clock = () => {
   //   axios
   //     .get(
@@ -78,6 +90,10 @@ const Header = () => {
           <div>Hotline : +123 456 7890</div>
           <div>|</div>
           <div>Welcome to Blue Lock</div>
+          <div className={`App ${theme}`}>
+      <div onClick={toggleTheme}><img id="ig" src="https://cdn1.iconfinder.com/data/icons/user-interface-16x16-vol-1/16/contrast-circle-512.png" alt="dark-light-mode"/></div>
+   
+    </div>
           {/* <div>
             {place}
             <br></br>
