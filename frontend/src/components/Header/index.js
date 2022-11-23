@@ -93,7 +93,7 @@ const Header = () => {
           <div>Hotline : +123 456 7890</div>
           <div>|</div>
           <div>Welcome to Blue Lock</div>
-          <div className={`App ${theme}`}>
+          <div className={`App ${theme}`} id="icon">
       <div onClick={toggleTheme}>{dark? <img src="https://img.icons8.com/color/30/000000/summer--v1.png"/>:<img src="https://img.icons8.com/ios-glyphs/30/000000/moon-symbol.png"/>}
        
         </div>
