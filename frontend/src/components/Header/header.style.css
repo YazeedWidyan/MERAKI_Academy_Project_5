@@ -192,4 +192,7 @@ background-color: #333;
   .bottom-header-right-wrapper {
     padding-top: 22px;
   }
+  #icon{
+   padding: 10px 1rem;
+  }
 }
