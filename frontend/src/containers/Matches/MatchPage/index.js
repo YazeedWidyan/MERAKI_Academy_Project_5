@@ -17,7 +17,6 @@ const MatchPage = () => {
       .get(`http://localhost:5000/match/number/${location.state}`)
       .then((res) => {
         setMatch(res.data.result[0]);
-        console.log(res.data.result);
       })
       .catch((err) => {
         console.log(err);
