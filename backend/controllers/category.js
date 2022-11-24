@@ -1,6 +1,5 @@
 const { pool } = require("../models/db");
 const getAllCatagories = (req, res) => {
-  console.log('...........');
   const query = `SELECT * FROM categories ORDER BY 1;`;
   pool
     .query(query)

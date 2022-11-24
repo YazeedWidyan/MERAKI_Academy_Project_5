@@ -59,7 +59,6 @@ const googleRegister = async (req, res) => {
           role: result.rows[0].role_id,
         });
       } else {
-        console.log("asdas");
         const values2 = [firstName, lastName, email.toLowerCase(), 123, 1];
         const query2 = `INSERT INTO users (firstName, lastName, email, password, role_id) VALUES ($1,$2,$3,$4,$5) RETURNING *;`;
         pool
