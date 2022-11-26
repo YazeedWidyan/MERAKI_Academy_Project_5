@@ -1,6 +1,6 @@
 <p align="center">
 <a href="http://localhost:3000" target="_blank" rel="noopener noreferrer">
- <img width="200px" height="100px" src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1668112210/0d4102657d746a79da70fc1fd21cf1ce_v4nlrh.jpg" alt="RED">
+ <img width="200px" height="150px" src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1668112210/0d4102657d746a79da70fc1fd21cf1ce_v4nlrh.jpg" alt="RED">
  </a>
 </p>
 
@@ -11,7 +11,7 @@
 
 <p align="center"> An awesome Project to describe README 
     <br> 
-<a href=''>Demo</a>
+<a href='https://bluelockgeeks.vercel.app/'>Demo</a>
     <br> 
 </p>
 
@@ -70,7 +70,7 @@ npm run start
 Now app ready to use
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465443/home_xarlfz.png"
   alt="Blue Lock">
 
 ## 🎈 Usage <a name="usage"></a>
@@ -78,7 +78,7 @@ Now app ready to use
 - You don't have to register to navigate our web app
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465562/home_2_olqicz.png"
   alt="Blue Lock">
 
 - You can click on the **Home** tab provided in the header to view the home section
@@ -86,62 +86,62 @@ Now app ready to use
 - In web app you will see producs card with small details you can click on it to go to **Product Details** section
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465739/card_zfbgic.png"
   alt="Blue Lock">
 
 - Once you in **Product Details** you will see product details with **Add to cart** button and **Add to wish list** button
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465625/product_details_langgq.png"
   alt="Blue Lock">
 
 - You can click on the **Add to cart** button to add this product to your cart but you have to be one of our users, so you should create an account
 
-<img width="400px" height="100px" 
- src=""
+<img width="200px" height="100px" 
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465794/btn1_mcg96l.png"
   alt="Blue Lock">
 
 - You can click on the **Add to wish list** button to add this product to your withlist but you have to be one of our users, so you should create an account
 
-<img width="400px" height="50px" 
- src=""
+<img width="100px" height="100px" 
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465845/btn2_korqi5.png"
   alt="Blue Lock">
 
 - You can click on the **Store** tab provided in the header to view the browse section or you can search about the product and you will see view all product and when click on it you will go to store section
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465934/store_xmy1p9.png"
   alt="Blue Lock">
 
 - In **Store** section you can filter by genre you can pick any product you want
 
-<img width="150px" height="500px" 
- src=""
+<img width="600px" height="100px" 
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669465992/Screenshot_1_rm0kca.png"
   alt="Blue Lock">
 
 - You can click on the **Cart** tab provided in the header to view your Cart but you have to be one of our users, so you should create an account or login
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669466115/cart_vkaxiv.png"
   alt="Blue Lock">
 
 - In **Cart** section you will see your products that you added
-  you will see **remove** button and you can remove any product from cart
+  you will see **Remove** button and you can remove any product from cart
 
 <img width="200px" height="100px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669466159/Screenshot_2_b8tu9e.png"
   alt="Blue Lock">
 
 - You can click on the **Wishlist** tab provided in the header to view your Wishlist but you have to be one of our users, so you should create an account or login
 
 <img width="400px" height="200px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669466207/wishlist_ekbrm8.png"
   alt="Blue Lock">
 
 - In **Wishlist** section you will see your products that you added you will see **remove** button and you can remove any game from wishlist
 
 <img width="200px" height="100px" 
- src=""
+ src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669466243/btn3_lqsgah.png"
   alt="Blue Lock">
 
 -
@@ -162,7 +162,7 @@ Your trello board link
 
 ## Data Flow <a name = "#data_flow"></a>
 
-<img width=200px height=200px src="" alt="Diagram"></a>
+<img width=300px height=200px src="https://res.cloudinary.com/dxg8ehdcq/image/upload/v1669466338/digram_project_5_xqziyr.png" alt="Diagrams"></a>
 
 ## ⚠️ Guided By <a name = "guided_by"></a>
 
